@@ -34,6 +34,8 @@ public class Vendas {
 	}
 
 	public int exibirEEscolherTipoDeServicoAdicional(ServicosAdicionais[] servicosAdicionais) {
+		System.out.println("Servicos Adicionais");
+		System.out.println();
 		Scanner scanner = new Scanner(System.in);
 		for (int i = 0; i < servicosAdicionais.length; i++) {
 			System.out.println("[" + i + "]" + servicosAdicionais[i].getNomeDoServico() + " Valor: "
@@ -41,7 +43,6 @@ public class Vendas {
 		}
 		System.out.println();
 		System.out.print("Escolha serviço que deseja comprar: ");
-		System.out.println();
 		int escolhaDoServicoAdicional = scanner.nextInt();
 		return escolhaDoServicoAdicional;
 	}
@@ -51,14 +52,29 @@ public class Vendas {
 		Scanner scanner = new Scanner(System.in);
 		double resultadoDaOperacao = 0.0;
 		String resposta = "";
+		if (opcaoEscolhida == 0) {
+			resultadoDaOperacao += servicosAdicionais[0].getValorDoServico();
+		} else if (opcaoEscolhida == 1) {
+			resultadoDaOperacao += servicosAdicionais[1].getValorDoServico();
+		} else if (opcaoEscolhida == 2) {
+			resultadoDaOperacao += servicosAdicionais[2].getValorDoServico();
+		} else if (opcaoEscolhida == 3) {
+			resultadoDaOperacao += servicosAdicionais[3].getValorDoServico();
+		}
+		System.out.println("O valor para pagamento até o momento é de: " + resultadoDaOperacao);
+		System.out.println();
+		System.out.print("Deseja mais algum produto? Digite [S] para Sim e [N] para Não: ");
+		resposta = scanner.next();
 		while (resposta.equalsIgnoreCase("S")) {
-			if (opcaoEscolhida == 1) {
+			System.out.println();
+			exibirEEscolherTipoDeServicoAdicional(servicosAdicionais);
+			if (opcaoEscolhida == 0) {
 				resultadoDaOperacao += servicosAdicionais[0].getValorDoServico();
-			} else if (opcaoEscolhida == 2) {
+			} else if (opcaoEscolhida == 1) {
 				resultadoDaOperacao += servicosAdicionais[1].getValorDoServico();
-			} else if (opcaoEscolhida == 3) {
+			} else if (opcaoEscolhida == 2) {
 				resultadoDaOperacao += servicosAdicionais[2].getValorDoServico();
-			} else if (opcaoEscolhida == 4) {
+			} else if (opcaoEscolhida == 3) {
 				resultadoDaOperacao += servicosAdicionais[3].getValorDoServico();
 			}
 
