@@ -13,7 +13,7 @@ public class GerenciamentoDoPosto {
 			System.out.println("[" + i + "]" + gerenciamentoDoPosto[i]);
 		}
 	}
-	
+
 	public int exibirEEscolherTipoDeCombustivelParaAbastecimentoDoTanque() {
 		Scanner scanner = new Scanner(System.in);
 		String[] tipoDeCombustivel = new String[] { "Etanol", "Gasolina Comum", "Gasolina Aditivada", "Diesel" };
@@ -25,7 +25,7 @@ public class GerenciamentoDoPosto {
 		int escolhaDoCombustivel = scanner.nextInt();
 		return escolhaDoCombustivel;
 	}
-	
+
 	public double informarQuantidadeDeLitrosParaAbastecimentoDoTanque() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println();

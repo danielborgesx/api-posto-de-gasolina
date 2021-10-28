@@ -1,7 +1,5 @@
 package br.com.posto.de.gasolina;
 
-import java.util.Scanner;
-
 public class TanquesDeCombustivel {
 	private final double CAPACIDADE_MAXIMA_TANQUES = 20000;
 	private double capacidadeAtualDoTanqueDeEtanol;
@@ -13,7 +11,6 @@ public class TanquesDeCombustivel {
 	private Combustiveis gasolinaAditivada = new Combustiveis("Gasolina Aditivada", 2.29, 3.69);
 	private Combustiveis diesel = new Combustiveis("Diesel", 1.39, 2.89);
 	private Combustiveis[] combustiveis = { etanol, gasolinaComum, gasolinaAditivada, diesel };
-	private Vendas vendas;
 
 	public void armazenarOValorAbastecidoAoTanqueRespectivo(GerenciamentoDoPosto gerenciamento) {
 		int opcaoEscolhida = gerenciamento.exibirEEscolherTipoDeCombustivelParaAbastecimentoDoTanque();
@@ -33,13 +30,14 @@ public class TanquesDeCombustivel {
 			capacidadeAtualDoTanqueDeDiesel += quantidadeDeCombustivelAbastecido;
 		}
 	}
-	
+
 	public void subtrairOValorAbastecidoPeloClienteDaCapacidadeDoTanque(int opcaoEscolhida,
-			double quantidadeDeCombustivelAbastecido) {
+			double quantidadeDeCombustivelAbastecido, Vendas vendas) {
+		System.out.println("Abastecimento");
+		System.out.println();
 		double quantidadeDeLitrosSubtraidosDoTanque = 0.0;
-		opcaoEscolhida = vendas.exibirEEscolherTipoDeCombustivelParaVenda();
 		for (int i = 0; i < combustiveis.length; i++) {
-			quantidadeDeLitrosSubtraidosDoTanque = vendas.exibirEInformarQuantidadeDeLitrosParaAbastecimentoDoCarroDoCliente()
+			quantidadeDeLitrosSubtraidosDoTanque = quantidadeDeCombustivelAbastecido
 					/ combustiveis[i].getValorDeVendaDosCombustiveis();
 
 			for (int y = i; y == i + 1; y++) {

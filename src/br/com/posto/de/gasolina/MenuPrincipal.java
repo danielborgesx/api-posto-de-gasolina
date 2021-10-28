@@ -4,18 +4,23 @@ import java.util.Scanner;
 
 public class MenuPrincipal {
 	private GerenciamentoDoPosto gerenciamentoDoPosto = new GerenciamentoDoPosto();
+	
 	private Vendas vendas = new Vendas();
+	
 	private TanquesDeCombustivel tanques = new TanquesDeCombustivel();
+	
 	private Relatorios relatorios = new Relatorios();
+	
 	private Combustiveis etanol = new Combustiveis("Etanol", 1.19, 2.39);
 	private Combustiveis gasolinaComum = new Combustiveis("Gasolina Comum", 2.19, 3.49);
 	private Combustiveis gasolinaAditivada = new Combustiveis("Gasolina Aditivada", 2.29, 3.69);
 	private Combustiveis diesel = new Combustiveis("Diesel", 1.39, 2.89);
+	private Combustiveis[] combustiveis = { etanol, gasolinaComum, gasolinaAditivada, diesel };
+	
 	private ServicosAdicionais duchaEcologica = new ServicosAdicionais("Ducha Ecológica", 8.00);
 	private ServicosAdicionais trocaDeOleo = new ServicosAdicionais("Troca de Óleo", 50.00);
 	private ServicosAdicionais balanceamento = new ServicosAdicionais("Balanceamento", 35.00);
 	private ServicosAdicionais cafe = new ServicosAdicionais("Café", 2.00);
-
 	private ServicosAdicionais[] servicosAdicionais = { duchaEcologica, trocaDeOleo, balanceamento, cafe };
 
 	public static void exibirMenuPrincipal() {
@@ -51,37 +56,45 @@ public class MenuPrincipal {
 				boot();
 			} else if (opcaoDoGerenciamento == 2) {
 
+				System.out.println();
+				boot();
 			} else if (opcaoDoGerenciamento == 3) {
 
+				System.out.println();
+				boot();
 			} else if (opcaoDoGerenciamento == 4) {
 
+				System.out.println();
+				boot();
 			} else if (opcaoDoGerenciamento == 5) {
+
 				System.out.println();
 				boot();
 			}
 
-		} else if (opcaoDesejada == 2) {
+		} else if (opcaoDesejada == 1) {
 			vendas.exibirOpcoesVendas();
 			Integer opcoesDasVendas = scanner.nextInt();
-			if (opcoesDasVendas == 1) {
-				vendas.abastecerOVeiculoDoCliente(tanques);
+			if (opcoesDasVendas == 0) {
+				int escolhaDoCliente = vendas.exibirEEscolherTipoDeCombustivelParaVenda(combustiveis);
+				double valorParaAbastecimento = vendas.exibirEInformarValorParaAbastecimentoDoCarroDoCliente();
+				tanques.subtrairOValorAbastecidoPeloClienteDaCapacidadeDoTanque(escolhaDoCliente, valorParaAbastecimento, vendas);
+				System.out.println();
+				boot();
+			} else if (opcoesDasVendas == 1) {
+				int escolhaDoCliente = vendas.exibirEEscolherTipoDeServicoAdicional(servicosAdicionais);
+				vendas.processarASomaEOPagamentoDosServicosAdicionais(escolhaDoCliente, servicosAdicionais);
 				System.out.println();
 				boot();
 			} else if (opcoesDasVendas == 2) {
-				int escolhaDoServicoAdicional = vendas.exibirEEscolherTipoDeServicoAdicional();
-				vendas.processarASomaEOPagamentoDosServicosAdicionais(escolhaDoServicoAdicional);
-				System.out.println();
-				boot();
-			} else if (opcoesDasVendas == 3) {
 				System.out.println();
 				boot();
 			}
-
-		} else if (opcaoDesejada == 3) {
-			System.out.println("Obrigado por usar o programa!");
+		} else if (opcaoDesejada == 2) {
+			System.out.println();
+			System.out.println("Obrigado por usar o programa!!!");
 			System.exit(0);
 		}
-
 	}
 
 	GerenciamentoDoPosto getGerenciamentoDoPosto() {
@@ -180,6 +193,14 @@ public class MenuPrincipal {
 		this.cafe = cafe;
 	}
 
+	Combustiveis[] getCombustiveis() {
+		return combustiveis;
+	}
+
+	void setCombustiveis(Combustiveis[] combustiveis) {
+		this.combustiveis = combustiveis;
+	}
+
 	ServicosAdicionais[] getServicosAdicionais() {
 		return servicosAdicionais;
 	}
@@ -188,5 +209,4 @@ public class MenuPrincipal {
 		this.servicosAdicionais = servicosAdicionais;
 	}
 
-	
 }
