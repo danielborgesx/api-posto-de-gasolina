@@ -15,9 +15,9 @@ public class TanquesDeCombustivel {
 	private Combustiveis[] combustiveis = { etanol, gasolinaComum, gasolinaAditivada, diesel };
 	private Vendas vendas;
 
-	public void armazenarOValorAbastecidoAoTanqueRespectivo() {
-		int opcaoEscolhida = exibirEEscolherTipoDeCombustivelParaAbastecimentoDoTanque();
-		double quantidadeDeCombustivelAbastecido = informarQuantidadeDeLitrosParaAbastecimentoDoTanque();
+	public void armazenarOValorAbastecidoAoTanqueRespectivo(GerenciamentoDoPosto gerenciamento) {
+		int opcaoEscolhida = gerenciamento.exibirEEscolherTipoDeCombustivelParaAbastecimentoDoTanque();
+		double quantidadeDeCombustivelAbastecido = gerenciamento.informarQuantidadeDeLitrosParaAbastecimentoDoTanque();
 		if (capacidadeAtualDoTanqueDeEtanol > CAPACIDADE_MAXIMA_TANQUES
 				|| capacidadeAtualDoTanqueDeGasolinaComum > CAPACIDADE_MAXIMA_TANQUES
 				|| capacidadeAtualDoTanqueDeGasolinaAditivada > CAPACIDADE_MAXIMA_TANQUES
@@ -34,26 +34,6 @@ public class TanquesDeCombustivel {
 		}
 	}
 	
-	public int exibirEEscolherTipoDeCombustivelParaAbastecimentoDoTanque() {
-		Scanner scanner = new Scanner(System.in);
-		String[] tipoDeCombustivel = new String[] { "Etanol", "Gasolina Comum", "Gasolina Aditivada", "Diesel" };
-		for (int i = 0; i < tipoDeCombustivel.length; i++) {
-			System.out.println("[" + i + "] " + tipoDeCombustivel[i]);
-		}
-		System.out.println();
-		System.out.print("Escolha o tipo de combustível para abastecimento do tanque: ");
-		int escolhaDoCombustivel = scanner.nextInt();
-		return escolhaDoCombustivel;
-	}
-	
-	public double informarQuantidadeDeLitrosParaAbastecimentoDoTanque() {
-		Scanner scanner = new Scanner(System.in);
-		System.out.println();
-		System.out.print("Escolha a quantidade de combustível que deseja abastecer: ");
-		double quantidadeDeLitros = scanner.nextDouble();
-		return quantidadeDeLitros;
-	}
-
 	public void subtrairOValorAbastecidoPeloClienteDaCapacidadeDoTanque(int opcaoEscolhida,
 			double quantidadeDeCombustivelAbastecido) {
 		double quantidadeDeLitrosSubtraidosDoTanque = 0.0;

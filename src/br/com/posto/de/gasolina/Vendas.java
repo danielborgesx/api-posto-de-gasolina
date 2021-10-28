@@ -3,19 +3,14 @@ package br.com.posto.de.gasolina;
 import java.util.Scanner;
 
 public class Vendas {
-	private Combustiveis etanol = new Combustiveis("Etanol", 1.19, 2.39);
-	private Combustiveis gasolinaComum = new Combustiveis("Gasolina Comum", 2.19, 3.49);
-	private Combustiveis gasolinaAditivada = new Combustiveis("Gasolina Aditivada", 2.29, 3.69);
-	private Combustiveis diesel = new Combustiveis("Diesel", 1.39, 2.89);
 
-	private Combustiveis[] combustiveis = { etanol, gasolinaComum, gasolinaAditivada, diesel };
+	private MenuPrincipal menu = new MenuPrincipal();
 
-	private ServicosAdicionais duchaEcologica = new ServicosAdicionais("Ducha Ecológica", 8.00);
-	private ServicosAdicionais trocaDeOleo = new ServicosAdicionais("Troca de Óleo", 50.00);
-	private ServicosAdicionais balanceamento = new ServicosAdicionais("Balanceamento", 35.00);
-	private ServicosAdicionais cafe = new ServicosAdicionais("Café", 2.00);
+	private Combustiveis[] combustiveis = { menu.getEtanol(), menu.getGasolinaComum(), menu.getGasolinaAditivada(),
+			menu.getDiesel() };
 
-	private ServicosAdicionais[] servicosAdicionais = { duchaEcologica, trocaDeOleo, balanceamento, cafe };
+	private ServicosAdicionais[] servicosAdicionais = { menu.getDuchaEcologica(), menu.getTrocaDeOleo(),
+			menu.getBalanceamento(), menu.getCafe() };
 
 	public void exibirOpcoesVendas() {
 		String[] vendas = new String[] { "Abastecimento", "Serviços", "Voltar" };
@@ -98,36 +93,12 @@ public class Vendas {
 		} while (resposta.equalsIgnoreCase("S"));
 	}
 
-	Combustiveis getEtanol() {
-		return etanol;
+	MenuPrincipal getMenu() {
+		return menu;
 	}
 
-	void setEtanol(Combustiveis etanol) {
-		this.etanol = etanol;
-	}
-
-	Combustiveis getGasolinaComum() {
-		return gasolinaComum;
-	}
-
-	void setGasolinaComum(Combustiveis gasolinaComum) {
-		this.gasolinaComum = gasolinaComum;
-	}
-
-	Combustiveis getGasolinaAditivada() {
-		return gasolinaAditivada;
-	}
-
-	void setGasolinaAditivada(Combustiveis gasolinaAditivada) {
-		this.gasolinaAditivada = gasolinaAditivada;
-	}
-
-	Combustiveis getDiesel() {
-		return diesel;
-	}
-
-	void setDiesel(Combustiveis diesel) {
-		this.diesel = diesel;
+	void setMenu(MenuPrincipal menu) {
+		this.menu = menu;
 	}
 
 	Combustiveis[] getCombustiveis() {
@@ -136,38 +107,6 @@ public class Vendas {
 
 	void setCombustiveis(Combustiveis[] combustiveis) {
 		this.combustiveis = combustiveis;
-	}
-
-	ServicosAdicionais getDuchaEcologica() {
-		return duchaEcologica;
-	}
-
-	void setDuchaEcologica(ServicosAdicionais duchaEcologica) {
-		this.duchaEcologica = duchaEcologica;
-	}
-
-	ServicosAdicionais getTrocaDeOleo() {
-		return trocaDeOleo;
-	}
-
-	void setTrocaDeOleo(ServicosAdicionais trocaDeOleo) {
-		this.trocaDeOleo = trocaDeOleo;
-	}
-
-	ServicosAdicionais getBalanceamento() {
-		return balanceamento;
-	}
-
-	void setBalanceamento(ServicosAdicionais balanceamento) {
-		this.balanceamento = balanceamento;
-	}
-
-	ServicosAdicionais getCafe() {
-		return cafe;
-	}
-
-	void setCafe(ServicosAdicionais cafe) {
-		this.cafe = cafe;
 	}
 
 	ServicosAdicionais[] getServicosAdicionais() {

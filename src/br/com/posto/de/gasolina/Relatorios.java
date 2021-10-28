@@ -1,9 +1,8 @@
 package br.com.posto.de.gasolina;
 
 public class Relatorios {
-	private TanquesDeCombustivel tanques = new TanquesDeCombustivel();
 
-	public void exibirQuantidadeAtualDeCombustivelNoTanque() {
+	public void exibirQuantidadeAtualDeCombustivelNoTanque(TanquesDeCombustivel tanques) {
 		String[] tipoDeCombustivel = new String[] { "Etanol", "Gasolina Comum", "Gasolina Aditivada", "Diesel" };
 		Double[] arrayDeCapacidadeDosTanques = { tanques.getCapacidadeAtualDoTanqueDeEtanol(),
 				tanques.getCapacidadeAtualDoTanqueDeGasolinaComum(),

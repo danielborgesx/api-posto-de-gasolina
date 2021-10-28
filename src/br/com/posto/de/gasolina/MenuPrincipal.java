@@ -7,6 +7,16 @@ public class MenuPrincipal {
 	private Vendas vendas = new Vendas();
 	private TanquesDeCombustivel tanques = new TanquesDeCombustivel();
 	private Relatorios relatorios = new Relatorios();
+	private Combustiveis etanol = new Combustiveis("Etanol", 1.19, 2.39);
+	private Combustiveis gasolinaComum = new Combustiveis("Gasolina Comum", 2.19, 3.49);
+	private Combustiveis gasolinaAditivada = new Combustiveis("Gasolina Aditivada", 2.29, 3.69);
+	private Combustiveis diesel = new Combustiveis("Diesel", 1.39, 2.89);
+	private ServicosAdicionais duchaEcologica = new ServicosAdicionais("Ducha Ecológica", 8.00);
+	private ServicosAdicionais trocaDeOleo = new ServicosAdicionais("Troca de Óleo", 50.00);
+	private ServicosAdicionais balanceamento = new ServicosAdicionais("Balanceamento", 35.00);
+	private ServicosAdicionais cafe = new ServicosAdicionais("Café", 2.00);
+
+	private ServicosAdicionais[] servicosAdicionais = { duchaEcologica, trocaDeOleo, balanceamento, cafe };
 
 	public static void exibirMenuPrincipal() {
 		Scanner scanner = new Scanner(System.in);
@@ -24,15 +34,21 @@ public class MenuPrincipal {
 		exibirMenuPrincipal();
 		System.out.print("Opção desejada: ");
 		Integer opcaoDesejada = scanner.nextInt();
+		System.out.println();
 		if (opcaoDesejada == 0) {
 			gerenciamentoDoPosto.opcoesGerenciamentoDoPosto();
 			System.out.println();
 			System.out.print("Opção desejada: ");
 			Integer opcaoDoGerenciamento = scanner.nextInt();
+			System.out.println();
 			if (opcaoDoGerenciamento == 0) {
-				tanques.armazenarOValorAbastecidoAoTanqueRespectivo();
+				tanques.armazenarOValorAbastecidoAoTanqueRespectivo(gerenciamentoDoPosto);
+				System.out.println();
+				boot();
 			} else if (opcaoDoGerenciamento == 1) {
-				relatorios.exibirQuantidadeAtualDeCombustivelNoTanque();
+				relatorios.exibirQuantidadeAtualDeCombustivelNoTanque(tanques);
+				System.out.println();
+				boot();
 			} else if (opcaoDoGerenciamento == 2) {
 
 			} else if (opcaoDoGerenciamento == 3) {
@@ -40,6 +56,7 @@ public class MenuPrincipal {
 			} else if (opcaoDoGerenciamento == 4) {
 
 			} else if (opcaoDoGerenciamento == 5) {
+				System.out.println();
 				boot();
 			}
 
@@ -48,10 +65,15 @@ public class MenuPrincipal {
 			Integer opcoesDasVendas = scanner.nextInt();
 			if (opcoesDasVendas == 1) {
 				vendas.abastecerOVeiculoDoCliente(tanques);
+				System.out.println();
+				boot();
 			} else if (opcoesDasVendas == 2) {
 				int escolhaDoServicoAdicional = vendas.exibirEEscolherTipoDeServicoAdicional();
 				vendas.processarASomaEOPagamentoDosServicosAdicionais(escolhaDoServicoAdicional);
+				System.out.println();
+				boot();
 			} else if (opcoesDasVendas == 3) {
+				System.out.println();
 				boot();
 			}
 
@@ -94,4 +116,77 @@ public class MenuPrincipal {
 		this.relatorios = relatorios;
 	}
 
+	Combustiveis getEtanol() {
+		return etanol;
+	}
+
+	void setEtanol(Combustiveis etanol) {
+		this.etanol = etanol;
+	}
+
+	Combustiveis getGasolinaComum() {
+		return gasolinaComum;
+	}
+
+	void setGasolinaComum(Combustiveis gasolinaComum) {
+		this.gasolinaComum = gasolinaComum;
+	}
+
+	Combustiveis getGasolinaAditivada() {
+		return gasolinaAditivada;
+	}
+
+	void setGasolinaAditivada(Combustiveis gasolinaAditivada) {
+		this.gasolinaAditivada = gasolinaAditivada;
+	}
+
+	Combustiveis getDiesel() {
+		return diesel;
+	}
+
+	void setDiesel(Combustiveis diesel) {
+		this.diesel = diesel;
+	}
+
+	ServicosAdicionais getDuchaEcologica() {
+		return duchaEcologica;
+	}
+
+	void setDuchaEcologica(ServicosAdicionais duchaEcologica) {
+		this.duchaEcologica = duchaEcologica;
+	}
+
+	ServicosAdicionais getTrocaDeOleo() {
+		return trocaDeOleo;
+	}
+
+	void setTrocaDeOleo(ServicosAdicionais trocaDeOleo) {
+		this.trocaDeOleo = trocaDeOleo;
+	}
+
+	ServicosAdicionais getBalanceamento() {
+		return balanceamento;
+	}
+
+	void setBalanceamento(ServicosAdicionais balanceamento) {
+		this.balanceamento = balanceamento;
+	}
+
+	ServicosAdicionais getCafe() {
+		return cafe;
+	}
+
+	void setCafe(ServicosAdicionais cafe) {
+		this.cafe = cafe;
+	}
+
+	ServicosAdicionais[] getServicosAdicionais() {
+		return servicosAdicionais;
+	}
+
+	void setServicosAdicionais(ServicosAdicionais[] servicosAdicionais) {
+		this.servicosAdicionais = servicosAdicionais;
+	}
+
+	
 }
