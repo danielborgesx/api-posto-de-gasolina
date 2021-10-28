@@ -6,15 +6,18 @@ public class TanquesDeCombustivel {
 	private double capacidadeAtualDoTanqueDeGasolinaComum;
 	private double capacidadeAtualDoTanqueDeGasolinaAditivada;
 	private double capacidadeAtualDoTanqueDeDiesel;
-	private Combustiveis etanol = new Combustiveis(1.19);
-	private Combustiveis gasolinaComum = new Combustiveis(2.19);
-	private Combustiveis gasolinaAditivada = new Combustiveis(3.49);
-	private Combustiveis diesel = new Combustiveis(2.89);
-	private GerenciamentoDoPosto gerenciamento;
+	private Combustiveis etanol = new Combustiveis("Etanol", 1.19, 2.39);
+	private Combustiveis gasolinaComum = new Combustiveis("Gasolina Comum", 2.19, 3.49);
+	private Combustiveis gasolinaAditivada = new Combustiveis("Gasolina Aditivada", 2.29, 3.69);
+	private Combustiveis diesel = new Combustiveis("Diesel", 1.39, 2.89);
+	private Combustiveis[] combustiveis = { etanol, gasolinaComum, gasolinaAditivada, diesel };
+	private GerenciamentoDoPosto gerenciamento = new GerenciamentoDoPosto();
+	private Vendas vendas = new Vendas();
 
-	public void armazenarOValorAbastecidoAoTanqueRespectivo(int opcaoEscolhida, double quantidadeDeCombustivelAbastecido) {
-		opcaoEscolhida = gerenciamento.exibirEEscolherTipoDeCombustivel();
-		quantidadeDeCombustivelAbastecido = gerenciamento.informarQuantidadeDeLitros();
+	public void armazenarOValorAbastecidoAoTanqueRespectivo(int opcaoEscolhida,
+			double quantidadeDeCombustivelAbastecido) {
+		opcaoEscolhida = gerenciamento.exibirEEscolherTipoDeCombustivelParaAbastecimentoDoTanque();
+		quantidadeDeCombustivelAbastecido = gerenciamento.informarQuantidadeDeLitrosParaAbastecimentoDoTanque();
 		if (capacidadeAtualDoTanqueDeEtanol > CAPACIDADE_MAXIMA_TANQUES
 				|| capacidadeAtualDoTanqueDeGasolinaComum > CAPACIDADE_MAXIMA_TANQUES
 				|| capacidadeAtualDoTanqueDeGasolinaAditivada > CAPACIDADE_MAXIMA_TANQUES
@@ -30,4 +33,119 @@ public class TanquesDeCombustivel {
 			capacidadeAtualDoTanqueDeDiesel += quantidadeDeCombustivelAbastecido;
 		}
 	}
+
+	public void subtrairOValorAbastecidoPeloClienteDaCapacidadeDoTanque(int opcaoEscolhida,
+			double quantidadeDeCombustivelAbastecido) {
+		double quantidadeDeLitrosSubtraidosDoTanque = 0.0;
+		opcaoEscolhida = vendas.exibirEEscolherTipoDeCombustivelParaVenda();
+		quantidadeDeCombustivelAbastecido = vendas.exibirEInformarQuantidadeDeLitrosParaAbastecimentoDoCarroDoCliente();
+		for (int i = 0; i < combustiveis.length; i++) {
+			quantidadeDeLitrosSubtraidosDoTanque = quantidadeDeCombustivelAbastecido
+					/ combustiveis[i].getValorDeVendaDosCombustiveis();
+
+			for (int y = i; y == i + 1; y++) {
+				if (capacidadeAtualDoTanqueDeEtanol == 0 || capacidadeAtualDoTanqueDeGasolinaComum == 0
+						|| capacidadeAtualDoTanqueDeGasolinaAditivada == 0 || capacidadeAtualDoTanqueDeDiesel == 0) {
+					System.out.println("Tanque vazio!!!");
+				} else if (quantidadeDeLitrosSubtraidosDoTanque > capacidadeAtualDoTanqueDeEtanol
+						|| quantidadeDeLitrosSubtraidosDoTanque > capacidadeAtualDoTanqueDeGasolinaComum
+						|| quantidadeDeLitrosSubtraidosDoTanque > capacidadeAtualDoTanqueDeGasolinaAditivada
+						|| quantidadeDeLitrosSubtraidosDoTanque > capacidadeAtualDoTanqueDeDiesel) {
+					System.out.println("Não há combustível suficiente!!!");
+				} else {
+					if (opcaoEscolhida == 0) {
+						capacidadeAtualDoTanqueDeEtanol -= quantidadeDeLitrosSubtraidosDoTanque;
+					} else if (opcaoEscolhida == 1) {
+						capacidadeAtualDoTanqueDeGasolinaComum -= quantidadeDeLitrosSubtraidosDoTanque;
+					} else if (opcaoEscolhida == 2) {
+						capacidadeAtualDoTanqueDeGasolinaAditivada -= quantidadeDeLitrosSubtraidosDoTanque;
+					} else if (opcaoEscolhida == 3) {
+						capacidadeAtualDoTanqueDeDiesel -= quantidadeDeLitrosSubtraidosDoTanque;
+					}
+					while (opcaoEscolhida >= 0 && opcaoEscolhida < 3) {
+						System.out.println("Abastecimento feito com sucesso!");
+					}
+					{
+					}
+				}
+			}
+		}
+	}
+
+	double getCapacidadeAtualDoTanqueDeEtanol() {
+		return capacidadeAtualDoTanqueDeEtanol;
+	}
+
+	void setCapacidadeAtualDoTanqueDeEtanol(double capacidadeAtualDoTanqueDeEtanol) {
+		this.capacidadeAtualDoTanqueDeEtanol = capacidadeAtualDoTanqueDeEtanol;
+	}
+
+	double getCapacidadeAtualDoTanqueDeGasolinaComum() {
+		return capacidadeAtualDoTanqueDeGasolinaComum;
+	}
+
+	void setCapacidadeAtualDoTanqueDeGasolinaComum(double capacidadeAtualDoTanqueDeGasolinaComum) {
+		this.capacidadeAtualDoTanqueDeGasolinaComum = capacidadeAtualDoTanqueDeGasolinaComum;
+	}
+
+	double getCapacidadeAtualDoTanqueDeGasolinaAditivada() {
+		return capacidadeAtualDoTanqueDeGasolinaAditivada;
+	}
+
+	void setCapacidadeAtualDoTanqueDeGasolinaAditivada(double capacidadeAtualDoTanqueDeGasolinaAditivada) {
+		this.capacidadeAtualDoTanqueDeGasolinaAditivada = capacidadeAtualDoTanqueDeGasolinaAditivada;
+	}
+
+	double getCapacidadeAtualDoTanqueDeDiesel() {
+		return capacidadeAtualDoTanqueDeDiesel;
+	}
+
+	void setCapacidadeAtualDoTanqueDeDiesel(double capacidadeAtualDoTanqueDeDiesel) {
+		this.capacidadeAtualDoTanqueDeDiesel = capacidadeAtualDoTanqueDeDiesel;
+	}
+
+	Combustiveis getEtanol() {
+		return etanol;
+	}
+
+	void setEtanol(Combustiveis etanol) {
+		this.etanol = etanol;
+	}
+
+	Combustiveis getGasolinaComum() {
+		return gasolinaComum;
+	}
+
+	void setGasolinaComum(Combustiveis gasolinaComum) {
+		this.gasolinaComum = gasolinaComum;
+	}
+
+	Combustiveis getGasolinaAditivada() {
+		return gasolinaAditivada;
+	}
+
+	void setGasolinaAditivada(Combustiveis gasolinaAditivada) {
+		this.gasolinaAditivada = gasolinaAditivada;
+	}
+
+	Combustiveis getDiesel() {
+		return diesel;
+	}
+
+	void setDiesel(Combustiveis diesel) {
+		this.diesel = diesel;
+	}
+
+	GerenciamentoDoPosto getGerenciamento() {
+		return gerenciamento;
+	}
+
+	void setGerenciamento(GerenciamentoDoPosto gerenciamento) {
+		this.gerenciamento = gerenciamento;
+	}
+
+	double getCAPACIDADE_MAXIMA_TANQUES() {
+		return CAPACIDADE_MAXIMA_TANQUES;
+	}
+
 }

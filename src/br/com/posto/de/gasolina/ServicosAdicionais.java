@@ -8,4 +8,22 @@ public class ServicosAdicionais {
 		this.nomeDoServico = nomeDoServico;
 		this.valorDoServico = valorDoServico;
 	}
+
+	String getNomeDoServico() {
+		return nomeDoServico;
+	}
+
+	void setNomeDoServico(String nomeDoServico) {
+		this.nomeDoServico = nomeDoServico;
+	}
+
+	double getValorDoServico() {
+		return valorDoServico;
+	}
+
+	void setValorDoServico(double valorDoServico) {
+		this.valorDoServico = valorDoServico;
+	}
+	
+	
 }

@@ -4,15 +4,10 @@ public class Combustiveis {
 	private String tipoDeCombustivel;
 	private double valorDeCustoDosCombustiveis;
 	private double valorDeVendaDosCombustiveis;
-	
-	
-	
-	public Combustiveis (double valorDeCusto) {
-		this.valorDeCustoDosCombustiveis = valorDeCusto;
-	}
-	
-	public Combustiveis (String tipoDeCombustivel, double valorDeVenda) {
+
+	public Combustiveis(String tipoDeCombustivel, double valorDeCusto, double valorDeVenda) {
 		this.tipoDeCombustivel = tipoDeCombustivel;
+		this.valorDeCustoDosCombustiveis = valorDeCusto;
 		this.valorDeVendaDosCombustiveis = valorDeVenda;
 	}
 
@@ -39,6 +34,5 @@ public class Combustiveis {
 	void setValorDeVendaDosCombustiveis(double valorDeVendaDosCombustiveis) {
 		this.valorDeVendaDosCombustiveis = valorDeVendaDosCombustiveis;
 	}
-	
-	
+
 }
