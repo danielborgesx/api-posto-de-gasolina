@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class GerenciamentoDoPosto {
 
-	private TanquesDeCombustivel tanques = new TanquesDeCombustivel();
+	private TanquesDeCombustivel tanques;
 	private Vendas vendasEfetuadas;
 	private Relatorios relatorio = new Relatorios();
 
@@ -18,30 +18,8 @@ public class GerenciamentoDoPosto {
 		}
 	}
 
-	public int exibirEEscolherTipoDeCombustivelParaAbastecimentoDoTanque() {
-		Scanner scanner = new Scanner(System.in);
-		String[] tipoDeCombustivel = new String[] { "Etanol", "Gasolina Comum", "Gasolina Aditivada", "Diesel" };
-		for (int i = 0; i < tipoDeCombustivel.length; i++) {
-			System.out.println("[" + i + "] " + tipoDeCombustivel[i]);
-		}
-		System.out.println();
-		System.out.print("Escolha o tipo de combustível para abastecimento do tanque: ");
-		int escolhaDoCombustivel = scanner.nextInt();
-		return escolhaDoCombustivel;
-	}
-
-	public double informarQuantidadeDeLitrosParaAbastecimentoDoTanque() {
-		Scanner scanner = new Scanner(System.in);
-		System.out.println();
-		System.out.print("Escolha a quantidade de combustível que deseja abastecer: ");
-		double quantidadeDeLitros = scanner.nextDouble();
-		return quantidadeDeLitros;
-	}
-
 	public void abastecerOsTanques() {
-		int escolhaDoCliente = exibirEEscolherTipoDeCombustivelParaAbastecimentoDoTanque();
-		tanques.armazenarOValorAbastecidoAoTanqueRespectivo(escolhaDoCliente,
-				informarQuantidadeDeLitrosParaAbastecimentoDoTanque());
+		tanques.armazenarOValorAbastecidoAoTanqueRespectivo();
 	}
 
 	public void exibirAQuantidadeAtualDeCombustivelNosTanques() {

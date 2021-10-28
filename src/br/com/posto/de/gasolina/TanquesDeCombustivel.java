@@ -1,5 +1,7 @@
 package br.com.posto.de.gasolina;
 
+import java.util.Scanner;
+
 public class TanquesDeCombustivel {
 	private final double CAPACIDADE_MAXIMA_TANQUES = 20000;
 	private double capacidadeAtualDoTanqueDeEtanol;
@@ -11,13 +13,11 @@ public class TanquesDeCombustivel {
 	private Combustiveis gasolinaAditivada = new Combustiveis("Gasolina Aditivada", 2.29, 3.69);
 	private Combustiveis diesel = new Combustiveis("Diesel", 1.39, 2.89);
 	private Combustiveis[] combustiveis = { etanol, gasolinaComum, gasolinaAditivada, diesel };
-	private GerenciamentoDoPosto gerenciamento = new GerenciamentoDoPosto();
-	private Vendas vendas = new Vendas();
+	private Vendas vendas;
 
-	public void armazenarOValorAbastecidoAoTanqueRespectivo(int opcaoEscolhida,
-			double quantidadeDeCombustivelAbastecido) {
-		opcaoEscolhida = gerenciamento.exibirEEscolherTipoDeCombustivelParaAbastecimentoDoTanque();
-		quantidadeDeCombustivelAbastecido = gerenciamento.informarQuantidadeDeLitrosParaAbastecimentoDoTanque();
+	public void armazenarOValorAbastecidoAoTanqueRespectivo() {
+		int opcaoEscolhida = exibirEEscolherTipoDeCombustivelParaAbastecimentoDoTanque();
+		double quantidadeDeCombustivelAbastecido = informarQuantidadeDeLitrosParaAbastecimentoDoTanque();
 		if (capacidadeAtualDoTanqueDeEtanol > CAPACIDADE_MAXIMA_TANQUES
 				|| capacidadeAtualDoTanqueDeGasolinaComum > CAPACIDADE_MAXIMA_TANQUES
 				|| capacidadeAtualDoTanqueDeGasolinaAditivada > CAPACIDADE_MAXIMA_TANQUES
@@ -33,14 +33,33 @@ public class TanquesDeCombustivel {
 			capacidadeAtualDoTanqueDeDiesel += quantidadeDeCombustivelAbastecido;
 		}
 	}
+	
+	public int exibirEEscolherTipoDeCombustivelParaAbastecimentoDoTanque() {
+		Scanner scanner = new Scanner(System.in);
+		String[] tipoDeCombustivel = new String[] { "Etanol", "Gasolina Comum", "Gasolina Aditivada", "Diesel" };
+		for (int i = 0; i < tipoDeCombustivel.length; i++) {
+			System.out.println("[" + i + "] " + tipoDeCombustivel[i]);
+		}
+		System.out.println();
+		System.out.print("Escolha o tipo de combustível para abastecimento do tanque: ");
+		int escolhaDoCombustivel = scanner.nextInt();
+		return escolhaDoCombustivel;
+	}
+	
+	public double informarQuantidadeDeLitrosParaAbastecimentoDoTanque() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println();
+		System.out.print("Escolha a quantidade de combustível que deseja abastecer: ");
+		double quantidadeDeLitros = scanner.nextDouble();
+		return quantidadeDeLitros;
+	}
 
 	public void subtrairOValorAbastecidoPeloClienteDaCapacidadeDoTanque(int opcaoEscolhida,
 			double quantidadeDeCombustivelAbastecido) {
 		double quantidadeDeLitrosSubtraidosDoTanque = 0.0;
 		opcaoEscolhida = vendas.exibirEEscolherTipoDeCombustivelParaVenda();
-		quantidadeDeCombustivelAbastecido = vendas.exibirEInformarQuantidadeDeLitrosParaAbastecimentoDoCarroDoCliente();
 		for (int i = 0; i < combustiveis.length; i++) {
-			quantidadeDeLitrosSubtraidosDoTanque = quantidadeDeCombustivelAbastecido
+			quantidadeDeLitrosSubtraidosDoTanque = vendas.exibirEInformarQuantidadeDeLitrosParaAbastecimentoDoCarroDoCliente()
 					/ combustiveis[i].getValorDeVendaDosCombustiveis();
 
 			for (int y = i; y == i + 1; y++) {
@@ -134,14 +153,6 @@ public class TanquesDeCombustivel {
 
 	void setDiesel(Combustiveis diesel) {
 		this.diesel = diesel;
-	}
-
-	GerenciamentoDoPosto getGerenciamento() {
-		return gerenciamento;
-	}
-
-	void setGerenciamento(GerenciamentoDoPosto gerenciamento) {
-		this.gerenciamento = gerenciamento;
 	}
 
 	double getCAPACIDADE_MAXIMA_TANQUES() {

@@ -1,7 +1,6 @@
 package br.com.posto.de.gasolina;
 
 public class Relatorios {
-	private Vendas vendas = new Vendas();
 	private TanquesDeCombustivel tanques = new TanquesDeCombustivel();
 
 	public void exibirQuantidadeAtualDeCombustivelNoTanque() {

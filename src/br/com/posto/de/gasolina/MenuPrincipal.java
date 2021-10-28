@@ -10,52 +10,44 @@ public class MenuPrincipal {
 
 	public static void exibirMenuPrincipal() {
 		Scanner scanner = new Scanner(System.in);
-		String[] opcoesMenuPrincipai = new String[] { "Gerenciamento do posto", "Vendas", "Sair" };
+		String[] opcoesMenuPrincipal = new String[] { "Gerenciamento do posto", "Vendas", "Sair" };
 		System.out.println("Menu Principal");
 		System.out.println();
 		System.out.println("Escolha uma opção abaixo:");
-		for (int i = 0; i < opcoesMenuPrincipai.length; i++) {
-			System.out.println("[" + i + "]" + opcoesMenuPrincipai);
+		for (int i = 0; i < opcoesMenuPrincipal.length; i++) {
+			System.out.println("[" + i + "]" + opcoesMenuPrincipal[i]);
 		}
 	}
 
 	public void boot() {
 		Scanner scanner = new Scanner(System.in);
 		exibirMenuPrincipal();
-		System.out.println("Opção desejada: ");
+		System.out.print("Opção desejada: ");
 		Integer opcaoDesejada = scanner.nextInt();
-		
-			do {
-				gerenciamentoDoPosto.opcoesGerenciamentoDoPosto();
-				System.out.println();
-				Integer opcaoDoGerenciamento = scanner.nextInt();
-				if (opcaoDoGerenciamento == 1) {
-					int combustivelEscolhido = gerenciamentoDoPosto
-							.exibirEEscolherTipoDeCombustivelParaAbastecimentoDoTanque();
-					double valorAbastecimentoTanque = gerenciamentoDoPosto
-							.informarQuantidadeDeLitrosParaAbastecimentoDoTanque();
-					if (combustivelEscolhido == 1) {
-						tanques.armazenarOValorAbastecidoAoTanqueRespectivo(combustivelEscolhido,
-								valorAbastecimentoTanque);
-					}
-				} else if (opcaoDoGerenciamento == 2) {
-					relatorios.exibirQuantidadeAtualDeCombustivelNoTanque();
-				} else if (opcaoDoGerenciamento == 3) {
+		if (opcaoDesejada == 0) {
+			gerenciamentoDoPosto.opcoesGerenciamentoDoPosto();
+			System.out.println();
+			System.out.print("Opção desejada: ");
+			Integer opcaoDoGerenciamento = scanner.nextInt();
+			if (opcaoDoGerenciamento == 0) {
+				tanques.armazenarOValorAbastecidoAoTanqueRespectivo();
+			} else if (opcaoDoGerenciamento == 1) {
+				relatorios.exibirQuantidadeAtualDeCombustivelNoTanque();
+			} else if (opcaoDoGerenciamento == 2) {
 
-				} else if (opcaoDoGerenciamento == 4) {
+			} else if (opcaoDoGerenciamento == 3) {
 
-				} else if (opcaoDoGerenciamento == 5) {
+			} else if (opcaoDoGerenciamento == 4) {
 
-				} else if (opcaoDoGerenciamento == 6) {
-					boot();
-				}
-			} while (opcaoDesejada == 0);
+			} else if (opcaoDoGerenciamento == 5) {
+				boot();
+			}
 
-		do {
+		} else if (opcaoDesejada == 2) {
 			vendas.exibirOpcoesVendas();
 			Integer opcoesDasVendas = scanner.nextInt();
 			if (opcoesDasVendas == 1) {
-				vendas.abastecerOVeiculoDoCliente();
+				vendas.abastecerOVeiculoDoCliente(tanques);
 			} else if (opcoesDasVendas == 2) {
 				int escolhaDoServicoAdicional = vendas.exibirEEscolherTipoDeServicoAdicional();
 				vendas.processarASomaEOPagamentoDosServicosAdicionais(escolhaDoServicoAdicional);
@@ -63,12 +55,11 @@ public class MenuPrincipal {
 				boot();
 			}
 
-		} while (opcaoDesejada == 1);
-
-		if (opcaoDesejada == 3) {
+		} else if (opcaoDesejada == 3) {
 			System.out.println("Obrigado por usar o programa!");
 			System.exit(0);
 		}
+
 	}
 
 	GerenciamentoDoPosto getGerenciamentoDoPosto() {

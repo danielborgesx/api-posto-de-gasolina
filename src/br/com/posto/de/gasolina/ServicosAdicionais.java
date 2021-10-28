@@ -8,7 +8,7 @@ public class ServicosAdicionais {
 		this.nomeDoServico = nomeDoServico;
 		this.valorDoServico = valorDoServico;
 	}
-
+	
 	String getNomeDoServico() {
 		return nomeDoServico;
 	}

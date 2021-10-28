@@ -3,7 +3,6 @@ package br.com.posto.de.gasolina;
 import java.util.Scanner;
 
 public class Vendas {
-	private TanquesDeCombustivel tanques = new TanquesDeCombustivel();
 	private Combustiveis etanol = new Combustiveis("Etanol", 1.19, 2.39);
 	private Combustiveis gasolinaComum = new Combustiveis("Gasolina Comum", 2.19, 3.49);
 	private Combustiveis gasolinaAditivada = new Combustiveis("Gasolina Aditivada", 2.29, 3.69);
@@ -59,7 +58,7 @@ public class Vendas {
 		return escolhaDoServicoAdicional;
 	}
 
-	public void abastecerOVeiculoDoCliente() {
+	public void abastecerOVeiculoDoCliente(TanquesDeCombustivel tanques) {
 		int escolhaDoCliente = exibirEEscolherTipoDeCombustivelParaVenda();
 		tanques.subtrairOValorAbastecidoPeloClienteDaCapacidadeDoTanque(escolhaDoCliente,
 				exibirEInformarQuantidadeDeLitrosParaAbastecimentoDoCarroDoCliente());
@@ -97,14 +96,6 @@ public class Vendas {
 				System.out.println();
 			}
 		} while (resposta.equalsIgnoreCase("S"));
-	}
-
-	TanquesDeCombustivel getTanques() {
-		return tanques;
-	}
-
-	void setTanques(TanquesDeCombustivel tanques) {
-		this.tanques = tanques;
 	}
 
 	Combustiveis getEtanol() {
