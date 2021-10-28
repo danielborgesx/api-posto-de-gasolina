@@ -6,11 +6,6 @@ public class TanquesDeCombustivel {
 	private double capacidadeAtualDoTanqueDeGasolinaComum;
 	private double capacidadeAtualDoTanqueDeGasolinaAditivada;
 	private double capacidadeAtualDoTanqueDeDiesel;
-	private Combustiveis etanol = new Combustiveis("Etanol", 1.19, 2.39);
-	private Combustiveis gasolinaComum = new Combustiveis("Gasolina Comum", 2.19, 3.49);
-	private Combustiveis gasolinaAditivada = new Combustiveis("Gasolina Aditivada", 2.29, 3.69);
-	private Combustiveis diesel = new Combustiveis("Diesel", 1.39, 2.89);
-	private Combustiveis[] combustiveis = { etanol, gasolinaComum, gasolinaAditivada, diesel };
 
 	public void armazenarOValorAbastecidoAoTanqueRespectivo(GerenciamentoDoPosto gerenciamento) {
 		int opcaoEscolhida = gerenciamento.exibirEEscolherTipoDeCombustivelParaAbastecimentoDoTanque();
@@ -32,7 +27,7 @@ public class TanquesDeCombustivel {
 	}
 
 	public void subtrairOValorAbastecidoPeloClienteDaCapacidadeDoTanque(int opcaoEscolhida,
-			double quantidadeDeCombustivelAbastecido, Vendas vendas) {
+			double quantidadeDeCombustivelAbastecido, Vendas vendas, Combustiveis[] combustiveis) {
 		System.out.println("Abastecimento");
 		System.out.println();
 		double quantidadeDeLitrosSubtraidosDoTanque = 0.0;
@@ -59,11 +54,7 @@ public class TanquesDeCombustivel {
 					} else if (opcaoEscolhida == 3) {
 						capacidadeAtualDoTanqueDeDiesel -= quantidadeDeLitrosSubtraidosDoTanque;
 					}
-					while (opcaoEscolhida >= 0 && opcaoEscolhida < 3) {
-						System.out.println("Abastecimento feito com sucesso!");
-					}
-					{
-					}
+					System.out.println("Abastecimento feito com sucesso! Foram abastecidos " + Math.round(quantidadeDeLitrosSubtraidosDoTanque));
 				}
 			}
 		}
@@ -99,38 +90,6 @@ public class TanquesDeCombustivel {
 
 	void setCapacidadeAtualDoTanqueDeDiesel(double capacidadeAtualDoTanqueDeDiesel) {
 		this.capacidadeAtualDoTanqueDeDiesel = capacidadeAtualDoTanqueDeDiesel;
-	}
-
-	Combustiveis getEtanol() {
-		return etanol;
-	}
-
-	void setEtanol(Combustiveis etanol) {
-		this.etanol = etanol;
-	}
-
-	Combustiveis getGasolinaComum() {
-		return gasolinaComum;
-	}
-
-	void setGasolinaComum(Combustiveis gasolinaComum) {
-		this.gasolinaComum = gasolinaComum;
-	}
-
-	Combustiveis getGasolinaAditivada() {
-		return gasolinaAditivada;
-	}
-
-	void setGasolinaAditivada(Combustiveis gasolinaAditivada) {
-		this.gasolinaAditivada = gasolinaAditivada;
-	}
-
-	Combustiveis getDiesel() {
-		return diesel;
-	}
-
-	void setDiesel(Combustiveis diesel) {
-		this.diesel = diesel;
 	}
 
 	double getCAPACIDADE_MAXIMA_TANQUES() {
