@@ -28,34 +28,63 @@ public class TanquesDeCombustivel {
 
 	public void subtrairOValorAbastecidoPeloClienteDaCapacidadeDoTanque(int opcaoEscolhida,
 			double quantidadeDeCombustivelAbastecido, Vendas vendas, Combustiveis[] combustiveis) {
-		System.out.println("Abastecimento");
+		System.out.println();
+		System.out.println("Processando o abastecimento...");
 		System.out.println();
 		double quantidadeDeLitrosSubtraidosDoTanque = 0.0;
-		for (int i = 0; i < combustiveis.length; i++) {
+		for (int i = 0; i != opcaoEscolhida + 1; i++) {
 			quantidadeDeLitrosSubtraidosDoTanque = quantidadeDeCombustivelAbastecido
 					/ combustiveis[i].getValorDeVendaDosCombustiveis();
-
-			for (int y = i; y == i + 1; y++) {
-				if (capacidadeAtualDoTanqueDeEtanol == 0 || capacidadeAtualDoTanqueDeGasolinaComum == 0
-						|| capacidadeAtualDoTanqueDeGasolinaAditivada == 0 || capacidadeAtualDoTanqueDeDiesel == 0) {
-					System.out.println("Tanque vazio!!!");
-				} else if (quantidadeDeLitrosSubtraidosDoTanque > capacidadeAtualDoTanqueDeEtanol
-						|| quantidadeDeLitrosSubtraidosDoTanque > capacidadeAtualDoTanqueDeGasolinaComum
-						|| quantidadeDeLitrosSubtraidosDoTanque > capacidadeAtualDoTanqueDeGasolinaAditivada
-						|| quantidadeDeLitrosSubtraidosDoTanque > capacidadeAtualDoTanqueDeDiesel) {
-					System.out.println("Não há combustível suficiente!!!");
-				} else {
-					if (opcaoEscolhida == 0) {
-						capacidadeAtualDoTanqueDeEtanol -= quantidadeDeLitrosSubtraidosDoTanque;
-					} else if (opcaoEscolhida == 1) {
-						capacidadeAtualDoTanqueDeGasolinaComum -= quantidadeDeLitrosSubtraidosDoTanque;
-					} else if (opcaoEscolhida == 2) {
-						capacidadeAtualDoTanqueDeGasolinaAditivada -= quantidadeDeLitrosSubtraidosDoTanque;
-					} else if (opcaoEscolhida == 3) {
-						capacidadeAtualDoTanqueDeDiesel -= quantidadeDeLitrosSubtraidosDoTanque;
-					}
-					System.out.println("Abastecimento feito com sucesso! Foram abastecidos " + Math.round(quantidadeDeLitrosSubtraidosDoTanque));
-				}
+		}
+		if (opcaoEscolhida == 1) {
+			
+			if (quantidadeDeLitrosSubtraidosDoTanque > capacidadeAtualDoTanqueDeEtanol) {
+				System.out.println("Não há combustível o suficiente!!!");
+				System.out.println();
+			} else if (capacidadeAtualDoTanqueDeEtanol == 0.0) {
+				System.out.println("Tanque Vazio!!!");
+				System.out.println();
+			} else {
+				capacidadeAtualDoTanqueDeEtanol -= quantidadeDeLitrosSubtraidosDoTanque;
+				System.out.println("Abastecimento feito com sucesso! Foram abastecidos: " + Math.round(quantidadeDeLitrosSubtraidosDoTanque));
+				System.out.println();
+			}
+		} else if (opcaoEscolhida == 2) {
+			if (quantidadeDeLitrosSubtraidosDoTanque > capacidadeAtualDoTanqueDeGasolinaComum) {
+				System.out.println("Não há combustível o suficiente!!!");
+				System.out.println();
+			} else if (capacidadeAtualDoTanqueDeGasolinaComum == 0.0) {
+				System.out.println("Tanque Vazio!!!");
+				System.out.println();
+			} else {
+				capacidadeAtualDoTanqueDeGasolinaComum -= quantidadeDeLitrosSubtraidosDoTanque;
+				System.out.println("Abastecimento feito com sucesso! Foram abastecidos: " + Math.round(quantidadeDeLitrosSubtraidosDoTanque));
+				System.out.println();
+			}
+		} else if (opcaoEscolhida == 3) {
+			if (quantidadeDeLitrosSubtraidosDoTanque > capacidadeAtualDoTanqueDeGasolinaAditivada) {
+				System.out.println("Não há combustível o suficiente!!!");
+				System.out.println();
+			} else if (capacidadeAtualDoTanqueDeGasolinaAditivada == 0.0) {
+				System.out.println("Tanque Vazio!!!");
+				System.out.println();
+			} else {
+				capacidadeAtualDoTanqueDeGasolinaAditivada -= quantidadeDeLitrosSubtraidosDoTanque;
+				System.out.println("Abastecimento feito com sucesso! Foram abastecidos: " + Math.round(quantidadeDeLitrosSubtraidosDoTanque));
+				System.out.println();
+			}
+		} else if (opcaoEscolhida == 4) {
+			
+			if (quantidadeDeLitrosSubtraidosDoTanque > capacidadeAtualDoTanqueDeDiesel) {
+				System.out.println("Não há combustível o suficiente!!!");
+				System.out.println();
+			} else if (capacidadeAtualDoTanqueDeDiesel == 0.0) {
+				System.out.println("Tanque Vazio!!!");
+				System.out.println();
+			} else {
+				capacidadeAtualDoTanqueDeDiesel -= quantidadeDeLitrosSubtraidosDoTanque;
+				System.out.println("Abastecimento feito com sucesso! Foram abastecidos: " + Math.round(quantidadeDeLitrosSubtraidosDoTanque));
+				System.out.println();
 			}
 		}
 	}

@@ -29,7 +29,6 @@ public class Vendas {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println();
 		System.out.print("Escolha a quantidade em reais (R$) que deseja abastecer: ");
-		System.out.println();
 		double quantidadeDeLitros = scanner.nextDouble();
 		return quantidadeDeLitros;
 	}
