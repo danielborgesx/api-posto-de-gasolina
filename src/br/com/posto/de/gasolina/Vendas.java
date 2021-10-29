@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Vendas {
 
-	private double resultadoDaOperecaoDuchaEcologica;
+	private double resultadoDaOperacaoDuchaEcologica;
 	private double resultadoDaOperacaoTrocaDeOleo;
 	private double resultadoDaOperacaoBalaceamento;
 	private double resultadoDaOperacaoCafe;
@@ -64,7 +64,7 @@ public class Vendas {
 		String resposta = "";
 		if (opcaoEscolhida == 0) {
 			resultadoDaOperacao = servicosAdicionais[0].getValorDoServico();
-			this.resultadoDaOperecaoDuchaEcologica += resultadoDaOperacao;
+			this.resultadoDaOperacaoDuchaEcologica += resultadoDaOperacao;
 			this.quantidadeDeOperacoesDuchaEcologica += quantidadeDeCompras;
 		} else if (opcaoEscolhida == 1) {
 			resultadoDaOperacao = servicosAdicionais[1].getValorDoServico();
@@ -90,7 +90,7 @@ public class Vendas {
 			int opcaoEscolhidaParaSoma = exibirEEscolherTipoDeServicoAdicional(servicosAdicionais);
 			if (opcaoEscolhidaParaSoma == 0) {
 				resultadoDaOperacao = servicosAdicionais[0].getValorDoServico();
-				this.resultadoDaOperecaoDuchaEcologica += resultadoDaOperacao;
+				this.resultadoDaOperacaoDuchaEcologica += resultadoDaOperacao;
 				this.quantidadeDeOperacoesDuchaEcologica += quantidadeDeCompras;
 			} else if (opcaoEscolhidaParaSoma == 1) {
 				resultadoDaOperacao = servicosAdicionais[1].getValorDoServico();
@@ -123,12 +123,12 @@ public class Vendas {
 		}
 	}
 
-	double getResultadoDaOperecaoDuchaEcologica() {
-		return resultadoDaOperecaoDuchaEcologica;
+	double getResultadoDaOperacaoDuchaEcologica() {
+		return resultadoDaOperacaoDuchaEcologica;
 	}
 
 	void setResultadoDaOperecaoDuchaEcologica(double resultadoDaOperecaoDuchaEcologica) {
-		this.resultadoDaOperecaoDuchaEcologica = resultadoDaOperecaoDuchaEcologica;
+		this.resultadoDaOperacaoDuchaEcologica = resultadoDaOperecaoDuchaEcologica;
 	}
 
 	double getResultadoDaOperacaoTrocaDeOleo() {
@@ -186,6 +186,4 @@ public class Vendas {
 	void setQuantidadeDeOperacoesCafe(int quantidadeDeOperacoesCafe) {
 		this.quantidadeDeOperacoesCafe = quantidadeDeOperacoesCafe;
 	}
-	
-	
 }

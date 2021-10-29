@@ -66,7 +66,6 @@ public class MenuPrincipal {
 				System.out.println();
 				boot();
 			} else if (opcaoDoGerenciamento == 4) {
-				
 				relatorios.exibirRelatorioDeLucrosBrutosDosServicosAdicionais(servicosAdicionais, vendas);
 				System.out.println();
 				boot();

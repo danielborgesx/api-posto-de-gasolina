@@ -6,10 +6,14 @@ public class TanquesDeCombustivel {
 	private double capacidadeAtualDoTanqueDeGasolinaComum;
 	private double capacidadeAtualDoTanqueDeGasolinaAditivada;
 	private double capacidadeAtualDoTanqueDeDiesel;
-	private double valorArrecadadoTanqueDeEtanol;
-	private double valorArrecadadoTanqueDeGasolinaComum;
-	private double valorArrecadadoTanqueDeGasolinaAditivada;
-	private double valorArrecadadoTanqueDeDiesel;
+	private double valorArrecadadoCompraDeEtanol;
+	private double valorArrecadadoCompraDeGasolinaComum;
+	private double valorArrecadadoCompraDeGasolinaAditivada;
+	private double valorArrecadadoCompraDeDiesel;
+	private double valorDeAbatecimentoEtanol;
+	private double valorDeAbatecimentoGasolinaComum;
+	private double valorDeAbatecimentoGasolinaAditivada;
+	private double valorDeAbatecimentoDiesel;
 
 	public void armazenarOValorAbastecidoAoTanqueRespectivo(GerenciamentoDoPosto gerenciamento, Combustiveis[] combustiveis) {
 		int opcaoEscolhida = gerenciamento.exibirTipoDeCombustivelParaAbastecimentoDoTanque();
@@ -37,16 +41,16 @@ public class TanquesDeCombustivel {
 			System.out.println("O valor excede a capacidade do tanque!");
 		} else if (opcaoEscolhida == 0) {
 			capacidadeAtualDoTanqueDeEtanol += quantidadeDeCombustivelAbastecido;
-			this.valorArrecadadoTanqueDeEtanol += valorDeAbastecimentoDoTanque;
+			this.valorArrecadadoCompraDeEtanol += valorDeAbastecimentoDoTanque;
 		} else if (opcaoEscolhida == 1) {
 			capacidadeAtualDoTanqueDeGasolinaComum += quantidadeDeCombustivelAbastecido;
-			this.valorArrecadadoTanqueDeGasolinaComum += valorDeAbastecimentoDoTanque;
+			this.valorArrecadadoCompraDeGasolinaComum += valorDeAbastecimentoDoTanque;
 		} else if (opcaoEscolhida == 2) {
 			capacidadeAtualDoTanqueDeGasolinaAditivada += quantidadeDeCombustivelAbastecido;
-			this.valorArrecadadoTanqueDeGasolinaAditivada += valorDeAbastecimentoDoTanque;
+			this.valorArrecadadoCompraDeGasolinaAditivada += valorDeAbastecimentoDoTanque;
 		} else if (opcaoEscolhida == 3) {
 			capacidadeAtualDoTanqueDeDiesel += quantidadeDeCombustivelAbastecido;
-			this.valorArrecadadoTanqueDeDiesel += valorDeAbastecimentoDoTanque;
+			this.valorArrecadadoCompraDeDiesel += valorDeAbastecimentoDoTanque;
 		}
 		do {
 			System.out.println();
@@ -64,7 +68,7 @@ public class TanquesDeCombustivel {
 			quantidadeDeLitrosSubtraidosDoTanque = quantidadeDeCombustivelAbastecido
 					/ combustiveis[i].getValorDeVendaDosCombustiveis();
 		}
-		if (opcaoEscolhida == 1) {
+		if (opcaoEscolhida == 0) {
 
 			if (quantidadeDeLitrosSubtraidosDoTanque > capacidadeAtualDoTanqueDeEtanol) {
 				System.out.println("Não há combustível o suficiente!!!");
@@ -73,12 +77,13 @@ public class TanquesDeCombustivel {
 				System.out.println("Tanque Vazio!!!");
 				System.out.println();
 			} else {
+				this.valorDeAbatecimentoEtanol += quantidadeDeCombustivelAbastecido;
 				capacidadeAtualDoTanqueDeEtanol -= quantidadeDeLitrosSubtraidosDoTanque;
 				System.out.println("Abastecimento feito com sucesso! Foram abastecidos: "
-						+ Math.round(quantidadeDeLitrosSubtraidosDoTanque));
+						+ Math.round(quantidadeDeLitrosSubtraidosDoTanque) + " litros.");
 				System.out.println();
 			}
-		} else if (opcaoEscolhida == 2) {
+		} else if (opcaoEscolhida == 1) {
 			if (quantidadeDeLitrosSubtraidosDoTanque > capacidadeAtualDoTanqueDeGasolinaComum) {
 				System.out.println("Não há combustível o suficiente!!!");
 				System.out.println();
@@ -86,12 +91,13 @@ public class TanquesDeCombustivel {
 				System.out.println("Tanque Vazio!!!");
 				System.out.println();
 			} else {
+				this.valorDeAbatecimentoGasolinaComum += quantidadeDeCombustivelAbastecido;
 				capacidadeAtualDoTanqueDeGasolinaComum -= quantidadeDeLitrosSubtraidosDoTanque;
 				System.out.println("Abastecimento feito com sucesso! Foram abastecidos: "
-						+ Math.round(quantidadeDeLitrosSubtraidosDoTanque));
+						+ Math.round(quantidadeDeLitrosSubtraidosDoTanque) + " litros.");
 				System.out.println();
 			}
-		} else if (opcaoEscolhida == 3) {
+		} else if (opcaoEscolhida == 2) {
 			if (quantidadeDeLitrosSubtraidosDoTanque > capacidadeAtualDoTanqueDeGasolinaAditivada) {
 				System.out.println("Não há combustível o suficiente!!!");
 				System.out.println();
@@ -99,12 +105,13 @@ public class TanquesDeCombustivel {
 				System.out.println("Tanque Vazio!!!");
 				System.out.println();
 			} else {
+				this.valorDeAbatecimentoGasolinaAditivada += quantidadeDeCombustivelAbastecido;
 				capacidadeAtualDoTanqueDeGasolinaAditivada -= quantidadeDeLitrosSubtraidosDoTanque;
 				System.out.println("Abastecimento feito com sucesso! Foram abastecidos: "
-						+ Math.round(quantidadeDeLitrosSubtraidosDoTanque));
+						+ Math.round(quantidadeDeLitrosSubtraidosDoTanque) + " litros.");
 				System.out.println();
 			}
-		} else if (opcaoEscolhida == 4) {
+		} else if (opcaoEscolhida == 3) {
 
 			if (quantidadeDeLitrosSubtraidosDoTanque > capacidadeAtualDoTanqueDeDiesel) {
 				System.out.println("Não há combustível o suficiente!!!");
@@ -113,9 +120,10 @@ public class TanquesDeCombustivel {
 				System.out.println("Tanque Vazio!!!");
 				System.out.println();
 			} else {
+				this.valorDeAbatecimentoEtanol += quantidadeDeCombustivelAbastecido;
 				capacidadeAtualDoTanqueDeDiesel -= quantidadeDeLitrosSubtraidosDoTanque;
 				System.out.println("Abastecimento feito com sucesso! Foram abastecidos: "
-						+ Math.round(quantidadeDeLitrosSubtraidosDoTanque));
+						+ Math.round(quantidadeDeLitrosSubtraidosDoTanque) + " litros.");
 				System.out.println();
 			}
 		}
@@ -158,37 +166,99 @@ public class TanquesDeCombustivel {
 	}
 
 	double getValorArrecadadoTanqueDeEtanol() {
-		return valorArrecadadoTanqueDeEtanol;
+		return valorArrecadadoCompraDeEtanol;
 	}
 
 	void setValorArrecadadoTanqueDeEtanol(double valorArrecadadoTanqueDeEtanol) {
-		this.valorArrecadadoTanqueDeEtanol = valorArrecadadoTanqueDeEtanol;
+		this.valorArrecadadoCompraDeEtanol = valorArrecadadoTanqueDeEtanol;
 	}
 
 	double getValorArrecadadoTanqueDeGasolinaComum() {
-		return valorArrecadadoTanqueDeGasolinaComum;
+		return valorArrecadadoCompraDeGasolinaComum;
 	}
 
 	void setValorArrecadadoTanqueDeGasolinaComum(double valorArrecadadoTanqueDeGasolinaComum) {
-		this.valorArrecadadoTanqueDeGasolinaComum = valorArrecadadoTanqueDeGasolinaComum;
+		this.valorArrecadadoCompraDeGasolinaComum = valorArrecadadoTanqueDeGasolinaComum;
 	}
 
 	double getValorArrecadadoTanqueDeGasolinaAditivada() {
-		return valorArrecadadoTanqueDeGasolinaAditivada;
+		return valorArrecadadoCompraDeGasolinaAditivada;
 	}
 
 	void setValorArrecadadoTanqueDeGasolinaAditivada(double valorArrecadadoTanqueDeGasolinaAditivada) {
-		this.valorArrecadadoTanqueDeGasolinaAditivada = valorArrecadadoTanqueDeGasolinaAditivada;
+		this.valorArrecadadoCompraDeGasolinaAditivada = valorArrecadadoTanqueDeGasolinaAditivada;
 	}
 
 	double getValorArrecadadoTanqueDeDiesel() {
-		return valorArrecadadoTanqueDeDiesel;
+		return valorArrecadadoCompraDeDiesel;
 	}
 
 	void setValorArrecadadoTanqueDeDiesel(double valorArrecadadoTanqueDeDiesel) {
-		this.valorArrecadadoTanqueDeDiesel = valorArrecadadoTanqueDeDiesel;
+		this.valorArrecadadoCompraDeDiesel = valorArrecadadoTanqueDeDiesel;
 	}
-	
-	
+
+	double getValorArrecadadoCompraDeEtanol() {
+		return valorArrecadadoCompraDeEtanol;
+	}
+
+	void setValorArrecadadoCompraDeEtanol(double valorArrecadadoCompraDeEtanol) {
+		this.valorArrecadadoCompraDeEtanol = valorArrecadadoCompraDeEtanol;
+	}
+
+	double getValorArrecadadoCompraDeGasolinaComum() {
+		return valorArrecadadoCompraDeGasolinaComum;
+	}
+
+	void setValorArrecadadoCompraDeGasolinaComum(double valorArrecadadoCompraDeGasolinaComum) {
+		this.valorArrecadadoCompraDeGasolinaComum = valorArrecadadoCompraDeGasolinaComum;
+	}
+
+	double getValorArrecadadoCompraDeGasolinaAditivada() {
+		return valorArrecadadoCompraDeGasolinaAditivada;
+	}
+
+	void setValorArrecadadoCompraDeGasolinaAditivada(double valorArrecadadoCompraDeGasolinaAditivada) {
+		this.valorArrecadadoCompraDeGasolinaAditivada = valorArrecadadoCompraDeGasolinaAditivada;
+	}
+
+	double getValorArrecadadoCompraDeDiesel() {
+		return valorArrecadadoCompraDeDiesel;
+	}
+
+	void setValorArrecadadoCompraDeDiesel(double valorArrecadadoCompraDeDiesel) {
+		this.valorArrecadadoCompraDeDiesel = valorArrecadadoCompraDeDiesel;
+	}
+
+	double getValorDeAbatecimentoEtanol() {
+		return valorDeAbatecimentoEtanol;
+	}
+
+	void setValorDeAbatecimentoEtanol(double valorDeAbatecimentoEtanol) {
+		this.valorDeAbatecimentoEtanol = valorDeAbatecimentoEtanol;
+	}
+
+	double getValorDeAbatecimentoGasolinaComum() {
+		return valorDeAbatecimentoGasolinaComum;
+	}
+
+	void setValorDeAbatecimentoGasolinaComum(double valorDeAbatecimentoGasolinaComum) {
+		this.valorDeAbatecimentoGasolinaComum = valorDeAbatecimentoGasolinaComum;
+	}
+
+	double getValorDeAbatecimentoGasolinaAditivada() {
+		return valorDeAbatecimentoGasolinaAditivada;
+	}
+
+	void setValorDeAbatecimentoGasolinaAditivada(double valorDeAbatecimentoGasolinaAditivada) {
+		this.valorDeAbatecimentoGasolinaAditivada = valorDeAbatecimentoGasolinaAditivada;
+	}
+
+	double getValorDeAbatecimentoDiesel() {
+		return valorDeAbatecimentoDiesel;
+	}
+
+	void setValorDeAbatecimentoDiesel(double valorDeAbatecimentoDiesel) {
+		this.valorDeAbatecimentoDiesel = valorDeAbatecimentoDiesel;
+	}
 
 }

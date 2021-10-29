@@ -13,19 +13,16 @@ public class Relatorios {
 		}
 	}
 
-	public void exibirRelatorioDeVendasDeCombustivel(Combustiveis[] combustiveis, TanquesDeCombustivel tanque) {
+	public void exibirRelatorioDeVendasDeCombustivel(Combustiveis[] combustiveis, TanquesDeCombustivel tanques) {
 		System.out.println("Relatório de combustíveis vendidos");
 		System.out.println();
-		Double[] tanques = { tanque.getCapacidadeAtualDoTanqueDeEtanol(),
-				tanque.getCapacidadeAtualDoTanqueDeGasolinaComum(),
-				tanque.getCapacidadeAtualDoTanqueDeGasolinaAditivada(), tanque.getCapacidadeAtualDoTanqueDeDiesel() };
-		Double[] valorArrecadado = { tanque.getValorArrecadadoTanqueDeEtanol(),
-				tanque.getValorArrecadadoTanqueDeGasolinaComum(), tanque.getValorArrecadadoTanqueDeGasolinaAditivada(),
-				tanque.getValorArrecadadoTanqueDeDiesel() };
+		double[] valorArrecadado = { tanques.getValorDeAbatecimentoEtanol(),
+				tanques.getValorDeAbatecimentoGasolinaComum(), tanques.getValorDeAbatecimentoGasolinaAditivada(),
+				tanques.getValorDeAbatecimentoDiesel() };
 		for (int i = 0; i < combustiveis.length; i++) {
-			System.out.println("O tanque de " + combustiveis[i].getTipoDeCombustivel() + " foi abastecido com "
-					+ tanques[i] + " litros. O valor pago ao fornecedor é de R$" + Math.round(valorArrecadado[i])
-					+ " reais!");
+			System.out.println("Combustivel " + combustiveis[i].getTipoDeCombustivel() + " abastecido com "
+					+ Math.round(valorArrecadado[i] / combustiveis[i].getValorDeVendaDosCombustiveis())
+					+ " litros. Foram arrecadados R$" + valorArrecadado[i] + " reais.");
 		}
 		System.out.println();
 	}
@@ -34,7 +31,7 @@ public class Relatorios {
 		int[] quantidadeDeOperacoe = { vendas.getQuantidadeDeOperacoesDuchaEcologica(),
 				vendas.getQuantidadeDeOperacoesTrocaDeOleo(), vendas.getQuantidadeDeOperacoesBalanceamento(),
 				vendas.getQuantidadeDeOperacoesCafe() };
-		Double[] valorArrecadadoVendas = { vendas.getResultadoDaOperecaoDuchaEcologica(),
+		double[] valorArrecadadoVendas = { vendas.getResultadoDaOperacaoDuchaEcologica(),
 				vendas.getResultadoDaOperacaoTrocaDeOleo(), vendas.getResultadoDaOperacaoBalaceamento(),
 				vendas.getResultadoDaOperacaoCafe() };
 		for (int i = 0; i < servicosAdicionais.length; i++) {
@@ -43,6 +40,7 @@ public class Relatorios {
 			System.out.println(quantidadeDeOperacoe[i] + " produto(s) " + tipoDeProduto
 					+ " comprado(s). Valor arrecadado: " + valorArrecadadoPelosServicos);
 		}
+		System.out.println();
 	}
 
 	public void exibirRelatorioDeDespesasDeCombustivel(Combustiveis[] combustiveis, TanquesDeCombustivel tanque) {
@@ -60,14 +58,15 @@ public class Relatorios {
 		}
 		System.out.println();
 	}
-	
-	public void exibirRelatorioDeLucrosBrutosDosServicosAdicionais(ServicosAdicionais[] servicosAdicionais, Vendas vendas) {
+
+	public void exibirRelatorioDeLucrosBrutosDosServicosAdicionais(ServicosAdicionais[] servicosAdicionais,
+			Vendas vendas) {
 		exibirRelatorioDeVendasDeServicosAdicionais(servicosAdicionais, vendas);
-		Double[] valorArrecadadoVendas = { vendas.getResultadoDaOperecaoDuchaEcologica(),
+		Double[] valorArrecadadoVendas = { vendas.getResultadoDaOperacaoDuchaEcologica(),
 				vendas.getResultadoDaOperacaoTrocaDeOleo(), vendas.getResultadoDaOperacaoBalaceamento(),
 				vendas.getResultadoDaOperacaoCafe() };
 		double valorBrutoArrecadado = 0.0;
-		for(int i = 0; i < valorArrecadadoVendas.length; i++) {
+		for (int i = 0; i < valorArrecadadoVendas.length; i++) {
 			valorBrutoArrecadado += valorArrecadadoVendas[i];
 		}
 		System.out.println("O valor bruto de servicos adicionais é de R$" + valorArrecadadoVendas);
