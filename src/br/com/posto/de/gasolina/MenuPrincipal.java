@@ -35,8 +35,8 @@ public class MenuPrincipal {
 	}
 
 	public void boot() {
-		Scanner scanner = new Scanner(System.in);
 		exibirMenuPrincipal();
+		Scanner scanner = new Scanner(System.in);
 		System.out.print("Opção desejada: ");
 		Integer opcaoDesejada = scanner.nextInt();
 		System.out.println();
@@ -47,7 +47,7 @@ public class MenuPrincipal {
 			Integer opcaoDoGerenciamento = scanner.nextInt();
 			System.out.println();
 			if (opcaoDoGerenciamento == 0) {
-				tanques.armazenarOValorAbastecidoAoTanqueRespectivo(gerenciamentoDoPosto);
+				tanques.armazenarOValorAbastecidoAoTanqueRespectivo(gerenciamentoDoPosto, combustiveis);
 				System.out.println();
 				boot();
 			} else if (opcaoDoGerenciamento == 1) {
@@ -55,19 +55,22 @@ public class MenuPrincipal {
 				System.out.println();
 				boot();
 			} else if (opcaoDoGerenciamento == 2) {
-
+				relatorios.exibirRelatorioDeVendasDeCombustivel(combustiveis, tanques);
+				System.out.println("Relatório de serviços adicionais comprados");
+				System.out.println();
+				relatorios.exibirRelatorioDeVendasDeServicosAdicionais(servicosAdicionais, vendas);
 				System.out.println();
 				boot();
 			} else if (opcaoDoGerenciamento == 3) {
-
+				relatorios.exibirRelatorioDeDespesasDeCombustivel(combustiveis, tanques);
 				System.out.println();
 				boot();
 			} else if (opcaoDoGerenciamento == 4) {
-
+				
+				relatorios.exibirRelatorioDeLucrosBrutosDosServicosAdicionais(servicosAdicionais, vendas);
 				System.out.println();
 				boot();
 			} else if (opcaoDoGerenciamento == 5) {
-
 				System.out.println();
 				boot();
 			}
@@ -81,7 +84,7 @@ public class MenuPrincipal {
 				int escolhaDoCliente = vendas.exibirEEscolherTipoDeCombustivelParaVenda(combustiveis);
 				double valorParaAbastecimento = vendas.exibirEInformarValorParaAbastecimentoDoCarroDoCliente();
 				tanques.subtrairOValorAbastecidoPeloClienteDaCapacidadeDoTanque(escolhaDoCliente,
-						valorParaAbastecimento, vendas, combustiveis);
+						valorParaAbastecimento, combustiveis);
 				System.out.println();
 				boot();
 			} else if (opcoesDasVendas == 1) {

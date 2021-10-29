@@ -14,7 +14,7 @@ public class GerenciamentoDoPosto {
 		}
 	}
 
-	public int exibirEEscolherTipoDeCombustivelParaAbastecimentoDoTanque() {
+	public int exibirTipoDeCombustivelParaAbastecimentoDoTanque() {
 		Scanner scanner = new Scanner(System.in);
 		String[] tipoDeCombustivel = new String[] { "Etanol", "Gasolina Comum", "Gasolina Aditivada", "Diesel" };
 		for (int i = 0; i < tipoDeCombustivel.length; i++) {
