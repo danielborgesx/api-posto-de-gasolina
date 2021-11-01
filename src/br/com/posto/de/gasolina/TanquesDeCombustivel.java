@@ -15,24 +15,29 @@ public class TanquesDeCombustivel {
 	private double valorDeAbatecimentoGasolinaAditivada;
 	private double valorDeAbatecimentoDiesel;
 
-	public void armazenarOValorAbastecidoAoTanqueRespectivo(GerenciamentoDoPosto gerenciamento, Combustiveis[] combustiveis) {
+	public void armazenarOValorAbastecidoAoTanqueRespectivo(GerenciamentoDoPosto gerenciamento,
+			Combustiveis[] combustiveis) {
 		int opcaoEscolhida = gerenciamento.exibirTipoDeCombustivelParaAbastecimentoDoTanque();
 		double quantidadeDeCombustivelAbastecido = gerenciamento.informarQuantidadeDeLitrosParaAbastecimentoDoTanque();
-		double valorDeAbastecimentoDoTanque = 0.0; 
-		for(int i = 0; i < combustiveis.length; i++) {
+		double valorDeAbastecimentoDoTanque = 0.0;
+		for (int i = 0; i < combustiveis.length; i++) {
 			if (opcaoEscolhida == 0) {
-				valorDeAbastecimentoDoTanque = quantidadeDeCombustivelAbastecido / combustiveis[i].getValorDeCustoDosCombustiveis();
+				valorDeAbastecimentoDoTanque = quantidadeDeCombustivelAbastecido
+						/ combustiveis[i].getValorDeCustoDosCombustiveis();
 				break;
 			} else if (opcaoEscolhida == 1) {
-				valorDeAbastecimentoDoTanque = quantidadeDeCombustivelAbastecido / combustiveis[i].getValorDeCustoDosCombustiveis();
+				valorDeAbastecimentoDoTanque = quantidadeDeCombustivelAbastecido
+						/ combustiveis[i].getValorDeCustoDosCombustiveis();
 				break;
 			} else if (opcaoEscolhida == 2) {
-				valorDeAbastecimentoDoTanque = quantidadeDeCombustivelAbastecido / combustiveis[i].getValorDeCustoDosCombustiveis();
+				valorDeAbastecimentoDoTanque = quantidadeDeCombustivelAbastecido
+						/ combustiveis[i].getValorDeCustoDosCombustiveis();
 				break;
 			} else if (opcaoEscolhida == 3) {
-				valorDeAbastecimentoDoTanque = quantidadeDeCombustivelAbastecido / combustiveis[i].getValorDeCustoDosCombustiveis();
+				valorDeAbastecimentoDoTanque = quantidadeDeCombustivelAbastecido
+						/ combustiveis[i].getValorDeCustoDosCombustiveis();
 				break;
-			} 
+			}
 		}
 		if (capacidadeAtualDoTanqueDeEtanol > CAPACIDADE_MAXIMA_TANQUES
 				|| capacidadeAtualDoTanqueDeGasolinaComum > CAPACIDADE_MAXIMA_TANQUES
@@ -161,42 +166,6 @@ public class TanquesDeCombustivel {
 		this.capacidadeAtualDoTanqueDeDiesel = capacidadeAtualDoTanqueDeDiesel;
 	}
 
-	double getCAPACIDADE_MAXIMA_TANQUES() {
-		return CAPACIDADE_MAXIMA_TANQUES;
-	}
-
-	double getValorArrecadadoTanqueDeEtanol() {
-		return valorArrecadadoCompraDeEtanol;
-	}
-
-	void setValorArrecadadoTanqueDeEtanol(double valorArrecadadoTanqueDeEtanol) {
-		this.valorArrecadadoCompraDeEtanol = valorArrecadadoTanqueDeEtanol;
-	}
-
-	double getValorArrecadadoTanqueDeGasolinaComum() {
-		return valorArrecadadoCompraDeGasolinaComum;
-	}
-
-	void setValorArrecadadoTanqueDeGasolinaComum(double valorArrecadadoTanqueDeGasolinaComum) {
-		this.valorArrecadadoCompraDeGasolinaComum = valorArrecadadoTanqueDeGasolinaComum;
-	}
-
-	double getValorArrecadadoTanqueDeGasolinaAditivada() {
-		return valorArrecadadoCompraDeGasolinaAditivada;
-	}
-
-	void setValorArrecadadoTanqueDeGasolinaAditivada(double valorArrecadadoTanqueDeGasolinaAditivada) {
-		this.valorArrecadadoCompraDeGasolinaAditivada = valorArrecadadoTanqueDeGasolinaAditivada;
-	}
-
-	double getValorArrecadadoTanqueDeDiesel() {
-		return valorArrecadadoCompraDeDiesel;
-	}
-
-	void setValorArrecadadoTanqueDeDiesel(double valorArrecadadoTanqueDeDiesel) {
-		this.valorArrecadadoCompraDeDiesel = valorArrecadadoTanqueDeDiesel;
-	}
-
 	double getValorArrecadadoCompraDeEtanol() {
 		return valorArrecadadoCompraDeEtanol;
 	}
@@ -259,6 +228,10 @@ public class TanquesDeCombustivel {
 
 	void setValorDeAbatecimentoDiesel(double valorDeAbatecimentoDiesel) {
 		this.valorDeAbatecimentoDiesel = valorDeAbatecimentoDiesel;
+	}
+
+	double getCAPACIDADE_MAXIMA_TANQUES() {
+		return CAPACIDADE_MAXIMA_TANQUES;
 	}
 
 }

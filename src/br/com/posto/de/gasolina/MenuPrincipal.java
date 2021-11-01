@@ -51,7 +51,7 @@ public class MenuPrincipal {
 				System.out.println();
 				boot();
 			} else if (opcaoDoGerenciamento == 1) {
-				relatorios.exibirQuantidadeAtualDeCombustivelNoTanque(tanques);
+				relatorios.exibirQuantidadeAtualDeCombustivelNoTanque(tanques, combustiveis);
 				System.out.println();
 				boot();
 			} else if (opcaoDoGerenciamento == 2) {
@@ -66,7 +66,13 @@ public class MenuPrincipal {
 				System.out.println();
 				boot();
 			} else if (opcaoDoGerenciamento == 4) {
+				relatorios.exibirRelatorioDeLucrosBrutosDosCombustiveis(combustiveis, tanques);
+				System.out.println();
+				relatorios.exibirRelatorioDeLucrosLiquidosDosCombustiveis(tanques);
+				System.out.println();
 				relatorios.exibirRelatorioDeLucrosBrutosDosServicosAdicionais(servicosAdicionais, vendas);
+				System.out.println();
+				relatorios.exibirRelatorioTotalDeLucrosBrutosELiquidos(tanques, vendas);
 				System.out.println();
 				boot();
 			} else if (opcaoDoGerenciamento == 5) {

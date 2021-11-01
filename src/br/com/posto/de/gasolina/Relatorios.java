@@ -2,14 +2,13 @@ package br.com.posto.de.gasolina;
 
 public class Relatorios {
 
-	public void exibirQuantidadeAtualDeCombustivelNoTanque(TanquesDeCombustivel tanques) {
-		String[] tipoDeCombustivel = new String[] { "Etanol", "Gasolina Comum", "Gasolina Aditivada", "Diesel" };
+	public void exibirQuantidadeAtualDeCombustivelNoTanque(TanquesDeCombustivel tanques, Combustiveis[] combustiveis) {
 		Double[] arrayDeCapacidadeDosTanques = { tanques.getCapacidadeAtualDoTanqueDeEtanol(),
 				tanques.getCapacidadeAtualDoTanqueDeGasolinaComum(),
 				tanques.getCapacidadeAtualDoTanqueDeGasolinaAditivada(), tanques.getCapacidadeAtualDoTanqueDeDiesel() };
 		for (int i = 0; i < arrayDeCapacidadeDosTanques.length; i++) {
-			System.out.println(
-					"Capacidade atual de " + tipoDeCombustivel[i] + " é de: " + arrayDeCapacidadeDosTanques[i]);
+			System.out.println("Capacidade atual de " + combustiveis[i].getTipoDeCombustivel() + " é de: "
+					+ arrayDeCapacidadeDosTanques[i]);
 		}
 	}
 
@@ -46,12 +45,12 @@ public class Relatorios {
 	public void exibirRelatorioDeDespesasDeCombustivel(Combustiveis[] combustiveis, TanquesDeCombustivel tanque) {
 		System.out.println("Relatório de combustíveis comprados");
 		System.out.println();
-		Double[] tanques = { tanque.getCapacidadeAtualDoTanqueDeEtanol(),
+		double[] tanques = { tanque.getCapacidadeAtualDoTanqueDeEtanol(),
 				tanque.getCapacidadeAtualDoTanqueDeGasolinaComum(),
 				tanque.getCapacidadeAtualDoTanqueDeGasolinaAditivada(), tanque.getCapacidadeAtualDoTanqueDeDiesel() };
-		Double[] valorArrecadado = { tanque.getValorArrecadadoTanqueDeEtanol(),
-				tanque.getValorArrecadadoTanqueDeGasolinaComum(), tanque.getValorArrecadadoTanqueDeGasolinaAditivada(),
-				tanque.getValorArrecadadoTanqueDeDiesel() };
+		double[] valorArrecadado = { tanque.getValorArrecadadoCompraDeEtanol(),
+				tanque.getValorArrecadadoCompraDeGasolinaComum(), tanque.getValorArrecadadoCompraDeGasolinaAditivada(),
+				tanque.getValorArrecadadoCompraDeDiesel() };
 		for (int i = 0; i < combustiveis.length; i++) {
 			System.out.println("O tanque de " + combustiveis[i].getTipoDeCombustivel() + " foi abastecido com "
 					+ tanques[i] + " litros. O valor pago ao fornecedor é de " + valorArrecadado[i]);
@@ -62,13 +61,65 @@ public class Relatorios {
 	public void exibirRelatorioDeLucrosBrutosDosServicosAdicionais(ServicosAdicionais[] servicosAdicionais,
 			Vendas vendas) {
 		exibirRelatorioDeVendasDeServicosAdicionais(servicosAdicionais, vendas);
-		Double[] valorArrecadadoVendas = { vendas.getResultadoDaOperacaoDuchaEcologica(),
+		double[] valorArrecadadoVendas = { vendas.getResultadoDaOperacaoDuchaEcologica(),
 				vendas.getResultadoDaOperacaoTrocaDeOleo(), vendas.getResultadoDaOperacaoBalaceamento(),
 				vendas.getResultadoDaOperacaoCafe() };
 		double valorBrutoArrecadado = 0.0;
 		for (int i = 0; i < valorArrecadadoVendas.length; i++) {
 			valorBrutoArrecadado += valorArrecadadoVendas[i];
 		}
-		System.out.println("O valor bruto de servicos adicionais é de R$" + valorArrecadadoVendas);
+		System.out.println("O valor bruto de servicos adicionais é de R$" + valorBrutoArrecadado);
+	}
+	
+	public void exibirRelatorioDeLucrosBrutosDosCombustiveis(Combustiveis[] combustiveis, TanquesDeCombustivel tanques) {
+		exibirRelatorioDeVendasDeCombustivel(combustiveis, tanques);
+		double[] valorArrecadado = { tanques.getValorDeAbatecimentoEtanol(),
+				tanques.getValorDeAbatecimentoGasolinaComum(), tanques.getValorDeAbatecimentoGasolinaAditivada(),
+				tanques.getValorDeAbatecimentoDiesel() };
+		double valorBrutoArrecadado = 0.0;
+		for(int i = 0; i < valorArrecadado.length; i++) {
+			valorBrutoArrecadado += valorArrecadado[i];
+		}
+		System.out.println("O valor bruto arrecadado de combustíveis é de R$" + valorBrutoArrecadado);
+	}
+	
+	public void exibirRelatorioDeLucrosLiquidosDosCombustiveis(TanquesDeCombustivel tanques) {
+		double[] valorArrecadadoPeloAbastecimento = { tanques.getValorDeAbatecimentoEtanol(),
+				tanques.getValorDeAbatecimentoGasolinaComum(), tanques.getValorDeAbatecimentoGasolinaAditivada(),
+				tanques.getValorDeAbatecimentoDiesel() };
+		double[] valorGastoPelaCompraCombustivel = { tanques.getValorArrecadadoCompraDeEtanol(),
+				tanques.getValorArrecadadoCompraDeGasolinaComum(), tanques.getValorArrecadadoCompraDeGasolinaAditivada(),
+				tanques.getValorArrecadadoCompraDeDiesel() };
+		double valorTotalArrecadadoPeloAbastecimento = 0.0;
+		double valorTotalGastoPelaCompraCombustivel = 0.0;
+		for (int i = 0; i < valorGastoPelaCompraCombustivel.length; i++) {
+			valorTotalArrecadadoPeloAbastecimento += valorArrecadadoPeloAbastecimento[i];
+			valorTotalGastoPelaCompraCombustivel += valorGastoPelaCompraCombustivel[i];
+		}
+		double valorLiquido = valorTotalArrecadadoPeloAbastecimento - valorTotalGastoPelaCompraCombustivel;
+		System.out.println("O valor liquido arrecadado de combustíveis é de R$" + valorLiquido);
+	}
+	
+	public void exibirRelatorioTotalDeLucrosBrutosELiquidos(TanquesDeCombustivel tanques, Vendas vendas) {
+		double[] valorArrecadadoVendas = { vendas.getResultadoDaOperacaoDuchaEcologica(),
+				vendas.getResultadoDaOperacaoTrocaDeOleo(), vendas.getResultadoDaOperacaoBalaceamento(),
+				vendas.getResultadoDaOperacaoCafe() };
+		double[] valorArrecadadoPeloAbastecimento = { tanques.getValorDeAbatecimentoEtanol(),
+				tanques.getValorDeAbatecimentoGasolinaComum(), tanques.getValorDeAbatecimentoGasolinaAditivada(),
+				tanques.getValorDeAbatecimentoDiesel() };
+		double[] valorArrecadadoPelaCompraCombustivel = { tanques.getValorArrecadadoCompraDeEtanol(),
+				tanques.getValorArrecadadoCompraDeGasolinaComum(), tanques.getValorArrecadadoCompraDeGasolinaAditivada(),
+				tanques.getValorArrecadadoCompraDeDiesel() };
+		double valorVendasArrecadado = 0.0;
+		double valorTotalArrecadadoPeloAbastecimento = 0.0;
+		double valorTotalArrecadadoPelaCompraCombustivel = 0.0;
+		for(int i = 0; i < valorArrecadadoPelaCompraCombustivel.length; i++) {
+			valorVendasArrecadado += valorArrecadadoVendas[i];
+			valorTotalArrecadadoPeloAbastecimento += valorArrecadadoPeloAbastecimento[i];
+			valorTotalArrecadadoPelaCompraCombustivel += valorArrecadadoPelaCompraCombustivel[i];
+		}
+		double valorTotalBruto = valorVendasArrecadado + valorTotalArrecadadoPeloAbastecimento;
+		double valorTotalLiquido = valorTotalArrecadadoPelaCompraCombustivel - valorTotalArrecadadoPeloAbastecimento;
+		System.out.println("O valor total bruto de combustíveis e serviços é de R$" + valorTotalBruto + ". O valor total liquido é de R$" + valorTotalLiquido);
 	}
 }
