@@ -1,78 +1,148 @@
-Exercício Posto de Gasolina
-Um posto de gasolina recebe periodicamente caminhões que abastecem seus tanques com os respectivos combustíveis:
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
 
-Gasolina Comum
-Gasolina Aditivada
-Etanol
-Diesel
-Cada um possui um determinado valor de custo. Cada tanque possui uma capacidade máxima de 20.000 litros para cada combustível e não é necessário o esvaziamento da capacidade total para um novo abastecimento.
+<h1>Exercício Posto de Gasolina </h1>
 
-Com os tanques abastecidos, posto atende seus clientes que optam pelo combustível desejado mediante o pagamento por litro baseado no valor de venda. A cada litro abastecido, o respectivo tanque tem sua capacidade reduzida de acordo com o nível de abastecimento. Cada combustível, portanto, possui um valor de venda e o cliente ao chegar no estabelecimento deve informar o valor em reais (R$) que deseja abastecer e a conversão em litros é feita para a subtração do tanque. A tabela de valores segue de acordo com a lista abaixo:
+<p>Um posto de gasolina recebe periodicamente caminhões que abastecem seus tanques com os respectivos combustíveis:</p>
+<ul>
+<li>Gasolina Comum</li>
+<li>Gasolina Aditivada</li>
+<li>Etanol</li>
+<li>Diesel</li>
+</ul>
 
-Código	Combustível	Custo/Compra	Venda/Litro
-1	Etanol	1,19	2,39
-2	Gasolina Comum	2,19	3,49
-3	Gasolina Aditivada	2,29	3,69
-4	Diesel	1,39	2,89
-Além do processo de abastecimento de veículos, o posto conta com serviços adicionais que podem ou não ser oferecidos aos clientes independente do abastecimento. Seguem os serviços na tabela a seguir:
+<p>Cada um possui um determinado valor de custo. Cada tanque possui uma capacidade máxima de 20.000 litros para cada combustível e não é necessário o esvaziamento da capacidade total para um novo abastecimento.</p>
 
-Código	Serviço	Valor
-1	Ducha Ecológica	8,00
-2	Troca de Óleo	50,00
-3	Balanceamento	35,00
-4	Café	2,00
-Desenvolva uma aplicação em Java que gerencie o fornecimento de combustíveis junto ao controle de capacidade dos tanques; a venda dos combustíveis e prestação dos serviços adicionais e por fim, apresente relatórios referentes aos gastos do posto, às vendas de produtos e dos serviços e ao lucro obtido pelo estabelecimento.
+<p>Com os tanques abastecidos, posto atende seus clientes que optam pelo combustível desejado mediante o pagamento por litro baseado no valor de venda. A cada litro abastecido, o respectivo tanque tem sua capacidade reduzida de acordo com o nível de abastecimento. Cada combustível, portanto, possui um valor de venda e o cliente ao chegar no estabelecimento deve informar o valor em reais (R$) que deseja abastecer e a conversão em litros é feita para a subtração do tanque. A tabela de valores segue de acordo com a lista abaixo:</p>
 
-Funcionamento
-No menu principal, aparecem 3 opções:
+<table border = "1">
+<tr>
+  <th>Código</th>
+  <th>Combustível</th>
+  <th>Custo/Compra</th>
+  <th>Venda/Litro</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td>Etanol</td>
+  <td>1,19</td>
+  <td>3,49</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>Gasolina Comum</td>
+  <td>2,19</td>
+  <td>3,49</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>Gasolina Adtivada</td>
+  <td>2,29</td>
+  <td>3,69</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td>Diesel</td>
+  <td>1,39</td>
+  <td>2,89</td>
+</tr>
+</table>
 
-1 - Gerenciamento do posto;
-2 - Vendas;
-3 - Sair;
 
-Gerenciamento do posto
-Ao selecionar a opção 1 no menu principal, aparece a tela com as seguintes opções de gerência do posto:
+<p>Além do processo de abastecimento de veículos, o posto conta com serviços adicionais que podem ou não ser oferecidos aos clientes independente do abastecimento. Seguem os serviços na tabela a seguir:</p>
 
-1 - Abastecimento dos Tanques;
-2 - Relatório dos Tanques;
-3 - Relatório de Vendas;
-4 - Relatório de Despesas;
-5 - Relatório de Lucros;
-6 - Voltar
+<table border = "1">
+<tr>
+  <th>Código</th>
+  <th>Serviço</th>
+  <th>Valor</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td>Ducha Ecológica</td>
+  <td>8,00</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>Troca de Óleo</td>
+  <td>50,00</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>Balanceamento</td>
+  <td>35,00</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td>Café</td>
+  <td>2,00</td>
+</tr>
+  
+</table>
 
-Abastecimento dos tanques
-Ao selecionar a opção de abastecimento dos tanques, é exibida a tela para selecionar qual tanque será abastecido e em seguida o inserir valor em litros. Caso o valor inserido exceda a capacidade do tanque, o sistema exibe a mensagem "O valor excede a capacidade do tanque";
+<p>Desenvolva uma aplicação em Java que gerencie o fornecimento de combustíveis junto ao controle de capacidade dos tanques; a venda dos combustíveis e prestação dos serviços adicionais e por fim, apresente relatórios referentes aos gastos do posto, às vendas de produtos e dos serviços e ao lucro obtido pelo estabelecimento.</p>
 
-Relatório dos Tanques
-Exibe a quantidade atual de combustível nos tanques;
+<h2>Funcionamento</h2>
+<p>No menu principal, aparecem 3 opções:</p>
+<ol>
+  <li>Gerenciamento do posto;</li>
+  <li>Vendas;</li>
+  <li>Sair;</li>
+</ol>
 
-Relatório de vendas
-Exibe a quantidade em litros e o valor arrecadado para cada combustível; Exibe também a quantidade realizada e o valor para cada serviço;
+<h2>Gerenciamento do posto</h2>
+<p>Ao selecionar a opção 1 no menu principal, aparece a tela com as seguintes opções de gerência do posto:</p>
+<ol>
 
-Relatório de despesas
-Exibe a quantidade em litros e o valor pago pela compra ao fornecedor para cada combustível, e também a soma total de litros comprados e o valor total;
+  <li>Abastecimento dos Tanques;</li>
+  <li>Relatório dos Tanques;</li>
+  <li>Relatório de Vendas;</li>
+  <li>Relatório de Despesas;</li>
+  <li>Relatório de Lucros;</li>
+  <li>Voltar</li>
+</ol>
 
-Relatório de lucros
-Exibe o total de lucros brutos e lucros líquidos obtidos com a venda de combustíveis; Abaixo,exibe o total de lucros brutos obtidos com a venda dos serviços; Por último, exibe o total de lucros brutos e lucros líquidos da soma todas as vendas;
 
-Voltar
-Volta para a tela anterior
+<h2>Abastecimento dos tanques</h2>
+<p>Ao selecionar a opção de abastecimento dos tanques, é exibida a tela para selecionar qual tanque será abastecido e em seguida o inserir valor em litros. Caso o valor inserido exceda a capacidade do tanque, o sistema exibe a mensagem "O valor excede a capacidade do tanque";</p>
 
-Vendas
-Ao selecionar a opção 2 no menu principal, aparecem as opções:
+<h2>Relatório dos Tanques</h2>
+<p>Exibe a quantidade atual de combustível nos tanques;</p>
 
-1 - Abastecimento;
-2 - Serviços;
-3 - Voltar;
+<h2>Relatório de vendas</h2>
+<p>Exibe a quantidade em litros e o valor arrecadado para cada combustível; Exibe também a quantidade realizada e o valor para cada serviço;</p>
 
-Abastecimento
-Exibe a tela com os combustíveis na bomba e o valor por litro de cada um. Ao selecionar o combustível, exibe uma tela para inserir o valor em R$ a ser abastecido. Caso o tanque do combustível selecionado esteja vazio, exibe a mensagem "Tanque Vazio!!!". Caso o valor convertido de real em litros exceda a quantidade disponível no tanque, exibe a mensagem "Não há combustível o suficiente!!!";
+<h2>Relatório de despesas</h2>
+<p>Exibe a quantidade em litros e o valor pago pela compra ao fornecedor para cada combustível, e também a soma total de litros comprados e o valor total;</p>
 
-Serviços
-Exibe a tela com sos serviços e seus respectivos valores. Ao selecionar, exibe uma tela de confirmação do serviço realizado, e o sistema inclui o valor nos lucros;
+<h2>Relatório de lucros</h2>
+<p>Exibe o total de lucros brutos e lucros líquidos obtidos com a venda de combustíveis; Abaixo,exibe o total de lucros brutos obtidos com a venda dos serviços; Por último, exibe o total de lucros brutos e lucros líquidos da soma todas as vendas;</p>
 
-Voltar
-Volta para a tela anterior
+<h2>Voltar</h2>
+<p>Volta para a tela anterior</p>
 
-Sair
-Encerra o sistema.
+<h1>Vendas</h1>
+<p>Ao selecionar a opção 2 no menu principal, aparecem as opções:</p>
+<ol>
+  <li>Abastecimento;</li>
+  <li>Serviços;</li>
+  <li>Voltar;</li>
+</ol>
+
+<h2>Abastecimento</h2>
+<p>Exibe a tela com os combustíveis na bomba e o valor por litro de cada um. Ao selecionar o combustível, exibe uma tela para inserir o valor em R$ a ser abastecido. Caso o tanque do combustível selecionado esteja vazio, exibe a mensagem "Tanque Vazio!!!". Caso o valor convertido de real em litros exceda a quantidade disponível no tanque, exibe a mensagem "Não há combustível o suficiente!!!";</p>
+
+<h2>Serviços</h2>
+<p>Exibe a tela com sos serviços e seus respectivos valores. Ao selecionar, exibe uma tela de confirmação do serviço realizado, e o sistema inclui o valor nos lucros;</p>
+
+<h2>Voltar</h2>
+<p>Volta para a tela anterior</p>
+
+<h2>Sair</h2>
+<p>Encerra o sistema.</p>
+</body>
+</html>
